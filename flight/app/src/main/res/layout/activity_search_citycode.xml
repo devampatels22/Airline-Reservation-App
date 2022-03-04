@@ -1,42 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:padding="10dp"
+    android:layout_margin="10dp">
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_weight="1"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/Departure"
+        <android.widget.SearchView
+            android:iconifiedByDefault="true"
+            android:id="@+id/CityCode_searchview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <ListView
-            android:id="@+id/Departure_listview"
+            android:id="@+id/CityCode_listview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="300dp"
-        android:orientation="vertical">
 
-        <SearchView
-            android:id="@+id/Arrival"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <ListView
-            android:id="@+id/Arrival_listview"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
