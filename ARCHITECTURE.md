@@ -1,1 +1,6 @@
-![architecture](https://i.postimg.cc/d3xw9zNd/entity-relationship-drawio.png "architecture")
+# Architecture Diagram
+
+## Note 
+This diagram is subject to change as project evolves.
+
+![Architecture](ArchitectureDiagram.png)
