@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     EditText select_dates, adult_num, children_num, arrival_city, departure_city;
     Switch select_trip_type;
     TextView travellersOptions;
-
+    CheckBox adult_checkbox, children_checkbox;
     // search city code variables
     private Dialog dialog;
     private boolean isDeparture = true;
@@ -278,6 +278,33 @@ public class MainActivity extends AppCompatActivity {
     public void searchFlights(View view){ //this will be called directly on the button
 
     }
+
+    public void adultTravelOption(View view){
+        adult_checkbox = findViewById(R.id.adult_checkbox_id);
+        adult_num = findViewById(R.id.adult_num_edit_id);
+
+        if(adult_checkbox.isChecked()){
+            adult_num.setText("1");
+            adult_num.setEnabled(true);
+        }else{
+            adult_num.setText("");
+            adult_num.setEnabled(false);
+        }
+    }
+
+    public void childrenTravelOption(View view){
+        children_checkbox = findViewById(R.id.child_checkbox_id);
+        children_num = findViewById(R.id.children_num_edit_id);
+
+        if(children_checkbox.isChecked()){
+            children_num.setText("1");
+            children_num.setEnabled(true);
+        }else{
+            children_num.setText("");
+            children_num.setEnabled(false);
+        }
+    }
+
 
 
 
