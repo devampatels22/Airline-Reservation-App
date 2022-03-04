@@ -82,6 +82,50 @@ public class MainActivity extends AppCompatActivity {
 
     //Add Select date feature here
     public void setDate(){
+        select_dates = findViewById(R.id.select_dates_edit);
+        //Constraint to have only dates from today onwards can be selected
+        CalendarConstraints.Builder today = new CalendarConstraints.Builder();
+        today.setValidator(DateValidatorPointForward.now());
+
+        //Creating date range for round trips
+        MaterialDatePicker.Builder roundTripBuilder = MaterialDatePicker.Builder.dateRangePicker();
+        roundTripBuilder.setTitleText("Travelling dates");
+        roundTripBuilder.setCalendarConstraints(today.build());
+        final MaterialDatePicker dateRange = roundTripBuilder.build();
+
+        //Creating date picker for one way
+        MaterialDatePicker.Builder oneWayTripBuilder = MaterialDatePicker.Builder.datePicker();
+        oneWayTripBuilder.setTitleText("Travelling dates");
+        oneWayTripBuilder.setCalendarConstraints(today.build());
+        final MaterialDatePicker datePicker = oneWayTripBuilder.build();
+
+        //Adding onclick to open the popup
+        select_dates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                select_trip_type = findViewById(R.id.select_trip_type_id);
+                travellersOptions = findViewById(R.id.travellers_options_id);
+
+                if(select_trip_type.isChecked()){
+                    dateRange.show(getSupportFragmentManager(), "Material Range");
+                    dateRange.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                        @Override
+                        public void onPositiveButtonClick(Object selection) {
+                            select_dates.setText(dateRange.getHeaderText());
+                        }
+
+                    });
+                }else {
+                    datePicker.show(getSupportFragmentManager(), "Date_Picker");
+                    datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                        @Override
+                        public void onPositiveButtonClick(Object selection) {
+                            select_dates.setText(datePicker.getHeaderText());
+                        }
+                    });
+                }
+            }
+        });
     }
 
     // departureCity feature
