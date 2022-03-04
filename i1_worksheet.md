@@ -11,11 +11,11 @@ One of the team members Xiaoran Xie implemented this feature by adding the searc
 Currently there are not any thrown exceptions that are handled since our main focus was more on the UI area and completing a workable search page (# attach search page issue).
 
 ## Branching
+Link to branching strategy (Git hub flow)(https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/blob/main/Contributing.md#branches-details)
 
 ![Branch](Branch.jpg)
 
 
-Git's branching strategy (Git hub flow) (https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/network/main),
 We are using a Github Flow branching strategy. First we clone all out projects than we upload to a developement branch where group members are working on their own feature. A working verison in than commited and pushed onto GitLab through development branch and merged to main after making a Merge Request on GitLab.
 
 ## SOLID
