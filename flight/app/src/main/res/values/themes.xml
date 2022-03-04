@@ -13,4 +13,12 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Search City Code Dialog theme-->
+    <style name="SearchCityCodeActivityTheme" parent="Theme.AppCompat.Dialog">
+        <!-- float on activity-->
+        <item name="android:windowIsFloating">true</item>
+        <!-- make background be blurred-->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
 </resources>

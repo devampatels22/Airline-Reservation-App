@@ -3,26 +3,48 @@ package com.flight.presentation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.flight.R;
+import com.flight.business.AccessCityCode;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     //variables
     EditText select_dates, adult_num, children_num, arrival_city, departure_city;
     Switch select_trip_type;
     TextView travellersOptions;
+
+    // search city code variables
+    private Dialog dialog;
+    private boolean isDeparture = true;
+    private AccessCityCode accessCityCode;
+    String[] cityArray;
+    private SearchView searchCityCode_SearchView;
+    private ListView searchCityCode_ListView;
+    private String userChoice_departureCityCode; // result
+    private String userChoice_arrivalCityCode;   // result
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +77,150 @@ public class MainActivity extends AppCompatActivity {
     public void setDate(){
     }
 
-    //Add select city departure city here
+    // departureCity feature
     public void departureCity(){
-
+        // find departure_city TextView
+        departure_city = findViewById(R.id.departure_city_edit_id);
+        // listen user click TextView
+        departure_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // this is departure
+                isDeparture = true;
+                showDialog();
+            }
+        });
     }
 
-    //Add select city arrival city here
+    // arrivalCity feature
     public void arrivalCity(){
-
+        // find arrival_city TextView
+        arrival_city = findViewById(R.id.arrival_city_edit_id);
+        // listen user click TextView
+        arrival_city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // this is arrival
+                isDeparture = false;
+                showDialog();
+            }
+        });
     }
 
+    // show popup dialog
+    public void showDialog(){
+        // initialize dialog
+        dialog = new Dialog(MainActivity.this, R.style.SearchCityCodeActivityTheme);
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View searchCityCode_dialog = layoutInflater.inflate(R.layout.activity_search_citycode, null);
+        // find SearchView and ListView
+        searchCityCode_SearchView = (SearchView) searchCityCode_dialog.findViewById(R.id.CityCode_searchview);
+        searchCityCode_ListView = (ListView) searchCityCode_dialog.findViewById(R.id.CityCode_listview);
+        // initialize logic and database
+        accessCityCode = new AccessCityCode();
+        cityArray = accessCityCode.get_allCity_StrArr();
+        // initialize SearchView and ListView
+        set_searchCityCode_ListView(cityArray, isDeparture);
+        set_searchCityCode_SearchView(cityArray, isDeparture);
+        // set dialog layout
+        dialog.setContentView(searchCityCode_dialog);
+        // set dialog title
+        dialog.setTitle("Search City Code");
+        // show
+        dialog.show();
+    }
 
+    // set ListView
+    public void set_searchCityCode_ListView(String[] cityArray, boolean isDeparture){
+        // initialize adapter
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, cityArray);
+        searchCityCode_ListView.setAdapter(adapter);
+        // initialize ListView filter
+        searchCityCode_ListView.setTextFilterEnabled(true);
+        // listener
+        searchCityCode_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?>parent, View view, int position, long id) {
+                // is departureCity / arrivalCity
+                if (isDeparture) {
+                    // get user clicked result
+                    userChoice_departureCityCode = ((TextView)view).getText().toString();
+                    // update SearchView hint
+                    searchCityCode_SearchView.setQueryHint(userChoice_departureCityCode);
+                    // prompt
+                    Toast.makeText(getApplicationContext(),
+                            "Departure city is: " + userChoice_departureCityCode,
+                            Toast.LENGTH_SHORT).show();
+                    // update TextView
+                    departure_city.setText(userChoice_departureCityCode);
+                } else {
+                    // get user clicked result
+                    userChoice_arrivalCityCode = ((TextView)view).getText().toString();
+                    // update SearchView hint
+                    searchCityCode_SearchView.setQueryHint(userChoice_arrivalCityCode);
+                    // prompt
+                    Toast.makeText(getApplicationContext(),
+                            "Arrival city is: " + userChoice_arrivalCityCode,
+                            Toast.LENGTH_SHORT).show();
+                    // update TextView
+                    arrival_city.setText(userChoice_arrivalCityCode);
+                }
+                dialog.dismiss();
+            }
+        });
+    }
+
+    // set SearchView
+    public void set_searchCityCode_SearchView(String[] cityArray, boolean isDeparture){
+        // initialize
+        searchCityCode_SearchView.setIconifiedByDefault(false);
+        // add search icon (submit button)
+        searchCityCode_SearchView.setSubmitButtonEnabled(true);
+        // SearchView hint
+        // is departureCity / arrivalCity
+        if (isDeparture) {
+            searchCityCode_SearchView.setQueryHint("Please input Departure city/code");
+        } else {
+            searchCityCode_SearchView.setQueryHint("Please input Arrival city/code");
+        }
+        // listener
+        searchCityCode_SearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // query is user input which is submitted
+                // search in business layer
+                if (accessCityCode.isFindCity_Bool(query)) {
+                    // is departureCity / arrivalCity
+                    if (isDeparture) {
+                        Toast.makeText(getApplicationContext(),
+                                "Departure city is: " + accessCityCode.getFindCityString(query),
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Arrival city is: " + accessCityCode.getFindCityString(query),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Sorry we can't find your input city/code: " + query,
+                            Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    // clean filter
+                    searchCityCode_ListView.clearTextFilter();
+                } else {
+                    // filter ViewList by user input
+                    searchCityCode_ListView.setFilterText(newText);
+                }
+                return true;
+            }
+        });
+    }
 
 
     //Add search flights feature here
