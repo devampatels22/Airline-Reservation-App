@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Base_Theme_AppCompat_Light_DarkActionBar); //CREATING A DARK THEME
 
         getSupportActionBar().hide(); //hiding the action bar
-        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //hides the status bar
         setContentView(R.layout.activity_main);
 
         //Default value
@@ -70,8 +69,16 @@ public class MainActivity extends AppCompatActivity {
 
     //Add select Trip type here
     public void selectTripType(View view){
+        select_trip_type = findViewById(R.id.select_trip_type_id);
+        select_dates = findViewById(R.id.select_dates_edit);
+        if(select_trip_type.isChecked()){
+            select_trip_type.setText("Round trip");
+            select_dates.setText("Select Round Trip Dates ");
+        }else {
+            select_trip_type.setText("One way");
+            select_dates.setText("Select One way Trip Dates");
+        }
     }
-
 
     //Add Select date feature here
     public void setDate(){
