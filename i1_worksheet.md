@@ -12,16 +12,15 @@ Currently there are not any thrown exceptions that are handled since our main fo
 
 ## Branching
 
-The [GitLab Graph tool can do this](https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/network/main),
+![Branch](Branch.jpg)
 
-Provide a link to where you describe your branching strategy.
 
-Git's branching strategy (Git hub flow)
+Git's branching strategy (Git hub flow) (https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/network/main),
 We are using a Github Flow branching strategy. First we clone all out projects than we upload to a developement branch where group members are working on their own feature. A working verison in than commited and pushed onto GitLab through development branch and merged to main after making a Merge Request on GitLab.
 
 ## SOLID
 
-Find a SOLID violation in the project of group `(n%4)+1` (group 5 does group 1).
+Find a SOLID violation in the project of group 5.
 As of Now Group 5 app is not functional and only template is to be seen that does not violate Single Responsibility Principle.
 
 ## Agile Planning
