@@ -1,49 +1,49 @@
 package com.flight.business;
 
-
+import com.flight.application.Services;
+import com.flight.objects.City;
 import com.flight.persistence.CityCode;
-import com.flight.persistence.CityCodesArray;
+import com.flight.persistence.FakeDB;
 
 public class AccessCityCode {
-    private CityCodesArray fakeDB;
+    private FakeDB fakeDB;
     private CityCode[] cityArray;
+    private City city;// city obj includes CityName and CityCode
 
     public AccessCityCode() {
         // access fake database
-        fakeDB = new CityCodesArray();
+        fakeDB = Services.getFakeDBPersistence();
         // get city array from database
         cityArray = fakeDB.getArray();
     }
 
     // return String array
     // each item such as "Winnipeg YWG"
-    public String[] get_allCity_StrArr() {
-        String[] StringArray = new String[cityArray.length];
-        String temp = "";
+    public String[] getCityStrArr() {
+        String[] stringArray = new String[cityArray.length];
+        String toString = "";
         for (int i = 0; i < cityArray.length; i++) {
-            temp = cityArray[i].getName() + " " + cityArray[i].getCode();
-            StringArray[i] = temp;
+            city = new City(cityArray[i]);
+            toString = city.toString();
+            stringArray[i] = toString;
         }
-        return StringArray;
+        return stringArray;
     }
 
     // return Object array
     // each item such as "Winnipeg YWG"obj
-    public CityCode[] get_allCity_ObjArr() {
-        CityCode[] objArray = new CityCode[cityArray.length];
-        for (int i = 0; i < cityArray.length; i++) {
-            objArray[i] = cityArray[i];
-        }
-        return objArray;
+    public CityCode[] getCityObjArr() {
+        return cityArray;
     }
 
     // search user query
     // return true result if it exists in database
-    public boolean isFindCity_Bool(String index) {
+    public boolean isFindCity(String index) {
         boolean isFind = false;
         for (int i = 0; i < cityArray.length; i++) {
-            if (cityArray[i].getName().equalsIgnoreCase(index) ||
-                    cityArray[i].getCode().equalsIgnoreCase(index)) {
+            city = new City(cityArray[i]);
+            if (city.getCityName().equalsIgnoreCase(index) ||
+                    city.getCityCode().equalsIgnoreCase(index)) {
                 isFind = true;
             }
         }
@@ -51,13 +51,14 @@ public class AccessCityCode {
     }
 
     // search user query
-    // return the correct result if it exists in database
-    public CityCode get_findCity_obj(String index) {
+    // return the correct result as object if it exists in database
+    public CityCode getFindCityObj(String index) {
         CityCode findCity = null;
         for (int i = 0; i < cityArray.length; i++) {
-            if (cityArray[i].getName().equalsIgnoreCase(index) ||
-                    cityArray[i].getCode().equalsIgnoreCase(index)) {
-                findCity = cityArray[i];
+            city = new City(cityArray[i]);
+            if (city.getCityName().equalsIgnoreCase(index) ||
+                    city.getCityCode().equalsIgnoreCase(index)) {
+                findCity = city.getCityObj();
             }
         }
         return findCity;
@@ -65,12 +66,13 @@ public class AccessCityCode {
 
     // search user query
     // return the correct result as String if it exists in database
-    public String getFindCityString(String index) {
+    public String getFindCityStr(String index) {
         String findCity = "";
         for (int i = 0; i < cityArray.length; i++) {
-            if (cityArray[i].getName().equalsIgnoreCase(index) ||
-                    cityArray[i].getCode().equalsIgnoreCase(index)) {
-                findCity = cityArray[i].getName() + " " + cityArray[i].getCode();
+            city = new City(cityArray[i]);
+            if (city.getCityName().equalsIgnoreCase(index) ||
+                    city.getCityCode().equalsIgnoreCase(index)) {
+                findCity = city.toString();
             }
         }
         return findCity;
