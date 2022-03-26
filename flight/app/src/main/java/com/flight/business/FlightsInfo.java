@@ -15,7 +15,8 @@ public class  FlightsInfo{
     private final String departureCityCode;
     private final int distance;
     private final Flight flight;
-
+    private Time[] fTime ;
+    private double fPrice;
     //CONSTRUCTOR FlightInfo takes in Flight as constructor
     public FlightsInfo(Flight f1) {
 
@@ -23,20 +24,21 @@ public class  FlightsInfo{
         departureCityCode = f1.getDepartureCityCode();
         distance = f1.getDistance();
         flight = f1;
-
+        fTime = calDepArrTime();
+        fPrice = calPrice();
     }
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
-//    public static void main(String[] args){
-//        Flight f = new Flight("YWG","YYC",2000);
-//        FlightsInfo fi = new FlightsInfo(f);
-//
-//        System.out.println(Arrays.toString(fi.getDepArrTime()));
-//
-//    }
+    public static void main(String[] args){
+        Flight f = new Flight("YWG","YYC",2000);
+        FlightsInfo fi = new FlightsInfo(f);
+
+        System.out.println(fi);
+
+    }
 
     //returns price of fight according to distance
-    public double getPrice() {
+    private double calPrice() {
         //check distance and based on that assign price
         double price = 0;
 
@@ -67,7 +69,7 @@ public class  FlightsInfo{
     //returns Time[] where
     // Time[0] -> Departure time
     // Time[1] -> Arrival time
-    public Time[] getDepArrTime() {
+    private Time[] calDepArrTime() {
 
         Time[] tt = new Time[2];
         // Assign a random time and stick with it
@@ -79,10 +81,18 @@ public class  FlightsInfo{
         //flights normally start after 6 so adding it once random time is generated
         Time t0 = new Time((long)rand.nextInt(millisInDay) + 6*60*60*1000);
         tt[0] = t0;
-        System.out.println(t0);
+        //System.out.println(t0);
         Time t1 = new Time(t0.getTime() + 3600000L *(distance/500));
         tt[1] = t1;
         return tt;
+    }
+
+    public Time[] getDepArrTime(){
+        return fTime;
+    }
+
+    public double getPrice(){
+        return fPrice;
     }
 
     //returns Departure City code
