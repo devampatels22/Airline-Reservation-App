@@ -29,13 +29,13 @@ public class  FlightsInfo{
     }
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
-    public static void main(String[] args){
-        Flight f = new Flight("YWG","YYC",2000);
-        FlightsInfo fi = new FlightsInfo(f);
-
-        System.out.println(fi);
-
-    }
+//    public static void main(String[] args){
+//        Flight f = new Flight("YWG","YYC",2000);
+//        FlightsInfo fi = new FlightsInfo(f);
+//
+//        System.out.println(fi);
+//
+//    }
 
     //returns price of fight according to distance
     private double calPrice() {
