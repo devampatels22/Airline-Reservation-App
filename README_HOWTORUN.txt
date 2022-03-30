@@ -7,3 +7,5 @@ cd C:\hsqldb-2.6.1\hsqldb\data
 then:
 java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:flights/flights --dbname.0 flights
 
+Note: hdqldb work was taking longer than expected and copying to phone is still being worked on.
+
