@@ -15,9 +15,9 @@ Team chose to implement the master branch and development branch as the two main
 *No need to delete your created task branch when merging to development*
 
 ### Task Branches Naming Guideline
-Task assigned branches will be named according to the issue your working on and will be named as follows: written in **small letter** and  separated with a highthen **"-"**.
+Task assigned branches will be named according to the issue your working on and will be named as follows: written in **small letter** with camel case.
 ```
-select-travel-dates
+selectTravelDates
 ```
 ## Commit Messages Guideline
 Every completion of a task assigned branch must be followed with a commit message with the following guidelines.
