@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         searchCityCode_ListView = (ListView) searchCityCode_dialog.findViewById(R.id.CityCode_listview);
         // initialize logic and database
         accessCityCode = new AccessCityCode();
-        cityArray = accessCityCode.get_allCity_StrArr();
+        cityArray = accessCityCode.getCityStrArr();
         // initialize SearchView and ListView
         set_searchCityCode_ListView(cityArray, isDeparture);
         set_searchCityCode_SearchView(cityArray, isDeparture);
@@ -240,15 +240,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 // query is user input which is submitted
                 // search in business layer
-                if (accessCityCode.isFindCity_Bool(query)) {
+                if (accessCityCode.isFindCity(query)) {
                     // is departureCity / arrivalCity
                     if (isDeparture) {
                         Toast.makeText(getApplicationContext(),
-                                "Departure city is: " + accessCityCode.getFindCityString(query),
+                                "Departure city is: " + accessCityCode.getFindCityStr(query),
                                 Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(),
-                                "Arrival city is: " + accessCityCode.getFindCityString(query),
+                                "Arrival city is: " + accessCityCode.getFindCityStr(query),
                                 Toast.LENGTH_SHORT).show();
                     }
                 } else {
