@@ -1,6 +1,5 @@
 package com.flight.application;
 
-<<<<<<< flight/app/src/main/java/com/flight/application/Services.java
 import com.flight.persistence.CityCodesArray;
 import com.flight.persistence.FakeDB;
 import com.flight.persistence.IHsqldbFlights;
