@@ -54,12 +54,14 @@ public class  FlightsInfo{
             price = 500 + rand.nextInt(10000) / 100.0;
         } else if (distance >= 2500 && distance < 3000) {
             price = 600 + rand.nextInt(10000) / 100.0;
-        } else if (distance >= 3500 && distance < 4000) {
+        } else if (distance >= 3000 && distance < 3500) {
             price = 700 + rand.nextInt(10000) / 100.0;
-        } else if (distance >= 4000 && distance < 4500) {
+        } else if (distance >= 3500 && distance < 4000) {
             price = 800 + rand.nextInt(10000) / 100.0;
-        } else if (distance >= 4500 && distance < 5000) {
+        } else if (distance >= 4000 && distance < 4500) {
             price = 900 + rand.nextInt(10000) / 100.0;
+        } else if (distance >= 4500 && distance < 5000) {
+            price = 1000 + rand.nextInt(10000) / 100.0;
         }
         return price;
     }
@@ -105,9 +107,6 @@ public class  FlightsInfo{
         return arrivalCityCode;
     }
 
-    public long getDuration(){
-        return (fTime[1].getTime() - fTime[0].getTime());
-    }
     //returns distance between cities
     public int getDistance(){
         return distance;

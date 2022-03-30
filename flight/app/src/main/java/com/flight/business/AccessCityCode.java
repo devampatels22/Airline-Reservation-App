@@ -17,6 +17,12 @@ public class AccessCityCode {
         cityArray = fakeDB.getArray();
     }
 
+    // this constructor is for unit testing
+    public AccessCityCode(CityCode[] cityArr_testy) {
+        // get city array from database
+        cityArray = cityArr_testy;
+    }
+
     // return String array
     // each item such as "Winnipeg YWG"
     public String[] getCityStrArr() {
@@ -76,6 +82,24 @@ public class AccessCityCode {
             }
         }
         return findCity;
+    }
+
+    // check user query
+    // return the correct result as object if it
+    public boolean isInputValid(String index) {
+        boolean isValid = false;
+        if (index == null) {
+            isValid = false;
+        } else {
+            if (index.contains(" ")) {
+                isValid = false;
+            } else if (index.isEmpty()) {
+                isValid = false;
+            } else {
+                isValid = true;
+            }
+        }
+        return isValid;
     }
 }
 
