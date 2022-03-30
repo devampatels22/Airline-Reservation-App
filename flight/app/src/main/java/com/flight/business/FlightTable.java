@@ -22,12 +22,12 @@ public class FlightTable {
     }
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
-    public static void main(String[] args){
-        Flight f = new Flight("YWG","YYC",2000);
-        FlightsInfo fi = new FlightsInfo(f);
-        FlightTable flt = new FlightTable(fi);
-        System.out.println("FLIGHT TABLE: \n" + flt );
-    }
+    // public static void main(String[] args){
+    //     Flight f = new Flight("YWG","YYC",2000);
+    //     FlightsInfo fi = new FlightsInfo(f);
+    //     FlightTable flt = new FlightTable(fi);
+    //     System.out.println("FLIGHT TABLE: \n" + flt );
+    // }
 
     //returns the Flight table
     public ArrayList<FlightsInfo> getFlightTable(){
