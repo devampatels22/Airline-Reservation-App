@@ -4,8 +4,6 @@ package com.flight.business;
 import com.flight.persistence.Flight;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 
@@ -15,7 +13,7 @@ public class  FlightsInfo{
     private final String departureCityCode;
     private final int distance;
     private final Flight flight;
-    private Time[] fTime ;
+    private Time[] fTime;
     private double fPrice;
     //CONSTRUCTOR FlightInfo takes in Flight as constructor
     public FlightsInfo(Flight f1) {
@@ -29,13 +27,13 @@ public class  FlightsInfo{
     }
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
-//    public static void main(String[] args){
-//        Flight f = new Flight("YWG","YYC",2000);
-//        FlightsInfo fi = new FlightsInfo(f);
-//
-//        System.out.println(fi);
-//
-//    }
+    public static void main(String[] args){
+        Flight f = new Flight("YWG","YYC",2000);
+        FlightsInfo fi = new FlightsInfo(f);
+
+        System.out.println(fi);
+
+    }
 
     //returns price of fight according to distance
     private double calPrice() {
@@ -87,24 +85,29 @@ public class  FlightsInfo{
         return tt;
     }
 
-    public Time[] getDepArrTime(){
-        return fTime;
-    }
-
     public double getPrice(){
         return fPrice;
     }
+    //returns departure time as String
+    public String getDepartureTime(){
+        return fTime[0].toString();
+    }
+    //returns Arrival time as string
+    public String getArrivalTime(){
+        return fTime[1].toString();
+    }
 
     //returns Departure City code
-    public String getDepCity(){
-        return arrivalCityCode;
-    }
+    public String getDepCity(){ return departureCityCode ;}
 
     //returns arrival city code
     public String getArrCity(){
-        return departureCityCode;
+        return arrivalCityCode;
     }
 
+    public long getDuration(){
+        return (fTime[1].getTime() - fTime[0].getTime());
+    }
     //returns distance between cities
     public int getDistance(){
         return distance;
@@ -117,6 +120,6 @@ public class  FlightsInfo{
 
     //Simple print function to print flight info properly.
     public String toString(){
-        return getDepCity() +" "+ getArrCity() +"| DEP time "+ getDepArrTime()[0] +"| ARR time "+ getDepArrTime()[1] +"| Price:"+ getPrice() + "||" ;
+        return getDepCity() +" "+ getArrCity() +"| DEP time "+ getDepartureTime() +"| ARR time "+ getArrivalTime() +"| Price:"+ getPrice() + "||" ;
     }
 }
