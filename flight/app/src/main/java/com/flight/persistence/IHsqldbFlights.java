@@ -1,6 +1,5 @@
 package com.flight.persistence;
 
-interface IHsqldbFlights {
+public interface IHsqldbFlights {
     public Flight search(String departureCityCode, String arrivalCityCode);
 }
-
