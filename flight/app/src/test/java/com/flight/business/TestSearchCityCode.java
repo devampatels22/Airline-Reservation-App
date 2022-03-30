@@ -1,5 +1,8 @@
 package com.flight.business;
 
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,16 +14,87 @@ import com.flight.persistence.FakeDB;
 
 
 public class TestSearchCityCode {
+    private String query;
+    private AccessCityCode searchLogic;
+    private CityCode[] fkDB;
+
+    @BeforeClass
+    public static void Test_starts() {
+        System.out.println("Starting test TestSearchCityCode\n");
+    }
+
+    @Before
+    public void setUp() {
+        searchLogic = new AccessCityCode();
+    }
+
     @Test
-    public void Test_accessDB() {
-        FakeDB fakeDB = Services.getFakeDBPersistence();
-        assertNotNull(fakeDB);
+    public void Test_isInputInvalid_empty() {
+        query = "";
+        assertFalse(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_onlySpace() {
+        query = " ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "    ";
+        assertFalse(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_correct() {
+        query = "Winnipeg";
+        assertTrue(searchLogic.isInputValid(query));
+        query = "WINNIPEG";
+        assertTrue(searchLogic.isInputValid(query));
+        query = "Winnipeg12233";
+        assertTrue(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_spaceBetweenQuery() {
+        query = "Winni peg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Win nip eg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Winnipe     g";
+        assertFalse(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_spaceBeforeQuery() {
+        query = " Winnipeg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "     Winnipeg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "  Winnip eg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = " Winnipe     g";
+        assertFalse(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_spaceAfterQuery() {
+        query = "Winnipeg ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Winnipeg       ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Winnip eg   ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Winnipe     g    ";
+        assertFalse(searchLogic.isInputValid(query));
+    }
+    @Test
+    public void Test_isInputInvalid_spaceMixedQuery() {
+        query = "  Winnipeg ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "Winni  peg       ";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "       Winnip eg";
+        assertFalse(searchLogic.isInputValid(query));
+        query = "     Winn  ipe     g    ";
+        assertFalse(searchLogic.isInputValid(query));
     }
 
     // test if return correct boolean and test if can ignore user query case
     @Test
     public void Test_isFind_normalCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("Calgary");
         assertTrue(result1);
         boolean result2 = searchLogic.isFindCity("YYC");
@@ -28,7 +102,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_isFind_lowerCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("calgary");
         assertTrue(result1);
         boolean result2 = searchLogic.isFindCity("yyc");
@@ -36,7 +109,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_isFind_upperCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("CALGARY");
         assertTrue(result1);
         boolean result2 = searchLogic.isFindCity("YYC");
@@ -44,7 +116,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_isFind_casualCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("CalGArY");
         assertTrue(result1);
         boolean result2 = searchLogic.isFindCity("YyC");
@@ -52,7 +123,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_notFind_normalCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("Calgar");
         assertFalse(result1);
         boolean result2 = searchLogic.isFindCity("YY");
@@ -60,7 +130,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_notFind_lowerCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("calgry");
         assertFalse(result1);
         boolean result2 = searchLogic.isFindCity("yc");
@@ -68,7 +137,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_notFind_upperCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("CAGARY");
         assertFalse(result1);
         boolean result2 = searchLogic.isFindCity("YC");
@@ -76,7 +144,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_notFind_casualCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         boolean result1 = searchLogic.isFindCity("ClGAY");
         assertFalse(result1);
         boolean result2 = searchLogic.isFindCity("yC");
@@ -86,7 +153,6 @@ public class TestSearchCityCode {
     // test if return correct city object and if can ignore user query case
     @Test
     public void Test_getFindCityObj() {
-        AccessCityCode searchLogic = new AccessCityCode();
         String query1 = "Winnipeg";
         CityCode result1 = searchLogic.getFindCityObj(query1);
         assertEquals(result1.getName(), query1);
@@ -96,7 +162,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_getFindCityName_lowerCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         String query1 = "winnipeg";
         CityCode result1 = searchLogic.getFindCityObj(query1);
         assertNotNull(result1);
@@ -106,7 +171,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_getFindCityName_upperCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         String query = "WINNIPEG";
         CityCode result = searchLogic.getFindCityObj(query);
         assertNotNull(result);
@@ -116,7 +180,6 @@ public class TestSearchCityCode {
     }
     @Test
     public void Test_getFindCityName_casualCase() {
-        AccessCityCode searchLogic = new AccessCityCode();
         String query = "WinNIpEG";
         CityCode result = searchLogic.getFindCityObj(query);
         assertNotNull(result);
@@ -125,33 +188,47 @@ public class TestSearchCityCode {
         assertNotNull(result2);
     }
 
+    // create a temp fake database to test
+    public void create_fkDB() {
+        fkDB = new CityCode[5];
+        fkDB[0] = new CityCode("Calgary","YYC");
+        fkDB[1] = new CityCode("Edmonton","YEG");
+        fkDB[2] = new CityCode("Fredericton","YFC");
+        fkDB[3] = new CityCode("Gander","YQX");
+        fkDB[4] = new CityCode("Halifax","YHZ");
+    }
     // test entire return array
     @Test
     public void Test_getCityObjArr() {
-        FakeDB fakeDB = Services.getFakeDBPersistence();
-        AccessCityCode searchLogic = new AccessCityCode();
+        create_fkDB();
+        searchLogic = new AccessCityCode(fkDB);
         CityCode[] testArray = searchLogic.getCityObjArr();
         // 1. test two arrays whether have same length
-        assertEquals(fakeDB.getArray().length, testArray.length);
+        assertEquals(fkDB.length, testArray.length);
         // 2. test each item in array among two arrays
-        for (int i = 0; i < fakeDB.getArray().length; i++) {
-            City city = new City((fakeDB.getArray())[i]);
+        for (int i = 0; i < fkDB.length; i++) {
+            City city = new City(fkDB[i]);
             assertEquals(city.getCityName(), testArray[i].getName());
             assertEquals(city.getCityCode(), testArray[i].getCode());
         }
     }
     @Test
     public void Test_getCityStrArr() {
-        FakeDB fakeDB = Services.getFakeDBPersistence();
-        AccessCityCode searchLogic = new AccessCityCode();
+        create_fkDB();
+        searchLogic = new AccessCityCode(fkDB);
         String[] testArray = searchLogic.getCityStrArr();
         // 1. test two arrays whether have same length
-        assertEquals(fakeDB.getArray().length, testArray.length);
+        assertEquals(fkDB.length, testArray.length);
         // 2. test each item in array among two arrays
         String temp = "";
-        for (int i = 0; i < fakeDB.getArray().length; i++) {
-            City city = new City((fakeDB.getArray())[i]);
+        for (int i = 0; i < fkDB.length; i++) {
+            City city = new City(fkDB[i]);
             assertEquals(city.toString(), testArray[i]);
         }
+    }
+
+    @AfterClass
+    public static void Test_finish() {
+        System.out.println("Finished test TestSearchCityCode\n");
     }
 }

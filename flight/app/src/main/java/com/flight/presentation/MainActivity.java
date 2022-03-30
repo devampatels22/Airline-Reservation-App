@@ -240,20 +240,26 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 // query is user input which is submitted
                 // search in business layer
-                if (accessCityCode.isFindCity(query)) {
-                    // is departureCity / arrivalCity
-                    if (isDeparture) {
-                        Toast.makeText(getApplicationContext(),
-                                "Departure city is: " + accessCityCode.getFindCityStr(query),
-                                Toast.LENGTH_SHORT).show();
+                if (accessCityCode.isInputValid(query)) {
+                    if (accessCityCode.isFindCity(query)) {
+                        // is departureCity / arrivalCity
+                        if (isDeparture) {
+                            Toast.makeText(getApplicationContext(),
+                                    "Departure city is: " + accessCityCode.getFindCityStr(query),
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    "Arrival city is: " + accessCityCode.getFindCityStr(query),
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(),
-                                "Arrival city is: " + accessCityCode.getFindCityStr(query),
+                                "Sorry we can't find your input city/code: " + query,
                                 Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(),
-                            "Sorry we can't find your input city/code: " + query,
+                            "Invalid input!",
                             Toast.LENGTH_SHORT).show();
                 }
                 dialog.dismiss();
