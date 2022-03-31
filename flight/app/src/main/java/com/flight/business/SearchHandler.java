@@ -1,7 +1,7 @@
 package com.flight.business;
-import com.flight.persistence.FlightHandler;
+import com.flight.application.Services;
 import com.flight.persistence.Flight;
-import com.flight.business.FlightsInfo;
+import com.flight.persistence.IHsqldbFlights;
 
 public class SearchHandler {
     private String arrivalCity;
@@ -32,29 +32,45 @@ public class SearchHandler {
     }
     //**********************************************************************************************
 
+    //PLease ignore for test purpose only.
 //    public static void main(String[] args){
 //        SearchHandler ss = new SearchHandler(new String[]{"Winnipeg", "YWG"}, new String[]{"Calgary","YYC"} ,"jan30");
-//        FlightHandler fh = new FlightHandler();
-//        Flight f = fh.search(ss.departureCity,ss.arrivalCity);
-//        FlightsInfo fi = new FlightsInfo(f);
-//        FlightTable flt = new FlightTable(fi);
+//
+//        //ss.populateFakeDB();
+//
+//        FlightTable flt = ss.handleFakeDB();
 //        System.out.println("FLIGHT TABLE: "+ ss.getDate()+"\n" + flt );
 //    }
 
 
-    private void populate(){
-        FlightHandler fh = new FlightHandler();
+    private void populateFakeDB(){
+        IHsqldbFlights fh = Services.getFlightHandler();
         Flight f = fh.search(departureCity,arrivalCity);
         FlightsInfo fi = new FlightsInfo(f);
         table = new FlightTable(fi);
+    }
+
+    private void populateRealDB(){
+        IHsqldbFlights fh = Services.getFlightPersistence();
+        Flight x = fh.search(departureCity,arrivalCity);
+        FlightsInfo ii = new FlightsInfo(x);
+        table = new FlightTable(ii);
+
     }
 
     public String getDate(){
         return date;
     }
 
-    public FlightTable handle(){
-        populate();
+    public FlightTable handleRealDB(){
+        table = null;
+        populateRealDB();
+        return table;
+    }
+
+    public FlightTable handleFakeDB(){
+        table = null;
+        populateFakeDB();
         return table;
     }
 }

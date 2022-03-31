@@ -9,31 +9,37 @@ import java.util.Random;
 
 public class  FlightsInfo{
 
-    private final String arrivalCityCode;
-    private final String departureCityCode;
-    private final int distance;
-    private final Flight flight;
+    private String arrivalCityCode = null;
+    private String departureCityCode = null;
+    private int distance = 0;
+    private Flight flight = null;
     private Time[] fTime;
     private double fPrice;
+
+
     //CONSTRUCTOR FlightInfo takes in Flight as constructor
     public FlightsInfo(Flight f1) {
-
-        arrivalCityCode = f1.getArrivalCityCode();
-        departureCityCode = f1.getDepartureCityCode();
-        distance = f1.getDistance();
-        flight = f1;
-        fTime = calDepArrTime();
-        fPrice = calPrice();
+        try{
+            arrivalCityCode = f1.getArrivalCityCode();
+            departureCityCode = f1.getDepartureCityCode();
+            distance = f1.getDistance();
+            flight = f1;
+            fTime = calDepArrTime();
+            fPrice = calPrice();
+        }catch (Exception e){
+            System.out.println("City code does not exist in Database, Exception:" +e);
+            throw e;
+        }
     }
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
-    // public static void main(String[] args){
-    //     Flight f = new Flight("YWG","YYC",2000);
-    //     FlightsInfo fi = new FlightsInfo(f);
-
-    //     System.out.println(fi);
-
-    // }
+//     public static void main(String[] args){
+//         Flight f = new Flight("YWG","YYC",2000);
+//         FlightsInfo fi = new FlightsInfo(f);
+//
+//         System.out.println(fi);
+//
+//     }
 
     //returns price of fight according to distance
     private double calPrice() {
