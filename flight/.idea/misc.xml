@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/activity_rec_flights_activitiy.xml" value="0.1" />
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/activity_rec_flights_activity.xml" value="0.22554347826086957" />
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/activity_sandbox_layout.xml" value="0.1" />
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/activity_search_citycode.xml" value="0.1" />
+        <entry key="..\:/Git version/team-flight-4/flight/app/src/main/res/layout/recycler_flight_row.xml" value="0.25" />
         <entry key="..\:/Repos/team-flight-4/flight/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_search_citycode.xml" value="0.1" />
       </map>
