@@ -11,8 +11,6 @@ import com.flight.R;
 import com.flight.business.FlightTable;
 import com.flight.business.SearchHandler;
 
-import java.util.ArrayList;
-
 public class RecFlightsActivity extends AppCompatActivity {
 
     @Override
@@ -39,7 +37,12 @@ public class RecFlightsActivity extends AppCompatActivity {
         //Set up our flight information
 //        SearchHandler searchHandler = new SearchHandler("YYC", "YVR" ,"jan30");
         SearchHandler searchHandler = new SearchHandler(depCityCode, arrCityCode, dateString);
-        FlightTable flightTable = searchHandler.handle();
+
+        //The grader can chose between the 2 if they want to run the actual database or fake Databse.
+        //Line 43 runs fake databse that is inside flightHandler
+        //FlightTable flightTable = searchHandler.handleFakeDB();
+        //Line 45 runs real database that is inside hsqldb folder
+        FlightTable flightTable = searchHandler.handleRealDB();
 
         //Set up adapter for the recycler view
         RecFlightsAdapter adapter = new RecFlightsAdapter(this, flightTable);

@@ -11,7 +11,7 @@ public class FlightTable {
     private final int  size = 5;
     private static  ArrayList<FlightsInfo> flTable;
 
-    //ONSTRUCTOR takes in flightinfo class to populate the table
+    //CONSTRUCTOR takes in flightinfo class to populate the table
     public FlightTable(FlightsInfo fi1){
         flightinfo = fi1;
         flTable = new ArrayList<FlightsInfo>();
