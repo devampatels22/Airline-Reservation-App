@@ -1,4 +1,5 @@
-[![arch diagram.png](https://i.postimg.cc/kgmT8vT5/entity-relationship-drawio.png)](https://postimg.cc/bsm0fkcX) <br/>
+![architecture2](ARCHITECTURE2.png) <br/>
+![architecture3](ARCHITECTURE3.png) <br/>
 
 
 In presentation layer, we have implemented a MainActivity for user to input the flight info they want to search like depature city, arrival city, date, number and type of travellers;
