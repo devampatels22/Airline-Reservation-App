@@ -9,6 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flight">
+
+        <!-- ********************** Added: for rec flight navigation bar **************** -->
+        <activity
+            android:name=".presentation.RecFlightsActivity"
+            android:parentActivityName=".presentation.MainActivity"
+            android:label="Flights"
+            android:exported="false" />
+        <!-- ********************** DONE **************** -->
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

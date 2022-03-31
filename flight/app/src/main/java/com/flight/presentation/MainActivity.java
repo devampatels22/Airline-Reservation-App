@@ -1,5 +1,7 @@
 package com.flight.presentation;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         //Default value
         adult_num = findViewById(R.id.adult_num_edit_id);
         adult_num.setText("1");
+        children_num = findViewById(R.id.children_num_edit_id);
+        children_num.setEnabled(false);
 
         //Calling functions for each associated traveller enters
         setDate();
@@ -273,12 +277,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-    //Add search flights feature here
-    public void searchFlights(View view){ //this will be called directly on the button
-
-    }
-
     public void adultTravelOption(View view){
         adult_checkbox = findViewById(R.id.adult_checkbox_id);
         adult_num = findViewById(R.id.adult_num_edit_id);
@@ -305,8 +303,32 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Opens the search results in a recycler view
+    public void searchFlights(View view){ //this will be called directly on the button
+        Intent intent = new Intent(this, RecFlightsActivity.class);
+        //<editor-fold defaultstate="collapsed" desc="To be passed for iteration3 ">
+        /* To be passed for iteration 3
+        travellersOptions = findViewById(R.id.travellers_options_id);
+        select_trip_type = findViewById(R.id.select_trip_type_id);
+        adult_num = findViewById(R.id.adult_num_edit_id);
+        children_num = findViewById(R.id.children_num_edit_id);
+        travellersOptions.append("\n"+children_num.getText());
+        */
+        // </editor-fold>
 
+        //Passing the cities to search activity
+        departure_city = findViewById(R.id.departure_city_edit_id);
+        String depCityString = departure_city.getText().toString();
+        arrival_city = findViewById(R.id.arrival_city_edit_id);
+        String arrCityString = arrival_city.getText().toString();
+        select_dates = findViewById(R.id.select_dates_edit);
+        String dateString = select_dates.getText().toString();
 
+        intent.putExtra("departureCity", depCityString);
+        intent.putExtra("arrivalCity", arrCityString);
+        intent.putExtra("travelDate", dateString);
 
+        startActivity(intent);
+    }
 
 }

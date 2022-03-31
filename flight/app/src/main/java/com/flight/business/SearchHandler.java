@@ -20,6 +20,18 @@ public class SearchHandler {
 
     }
 
+    //***************Added to account for only the departure and city code *************************
+    public SearchHandler(String departure, String arrival, String d){
+        try{
+            departureCity = departure;
+            arrivalCity = arrival;
+            date = d;
+        } catch (Exception e){
+            System.out.println("Possibly nothing in str[1] for departure or arrival city:" +e);
+        }
+    }
+    //**********************************************************************************************
+
 //    public static void main(String[] args){
 //        SearchHandler ss = new SearchHandler(new String[]{"Winnipeg", "YWG"}, new String[]{"Calgary","YYC"} ,"jan30");
 //        FlightHandler fh = new FlightHandler();
