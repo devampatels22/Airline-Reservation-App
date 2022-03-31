@@ -7,7 +7,11 @@
 
 [MainActivity](https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/blob/development/flight/app/src/main/java/com/flight/presentation/MainActivity.java)
 
-This file is for the main screen of the application.
+This file contains the UI layout that user enters TRIPTYPE, DEPATURE and ARRIVAL CITY, DATES OF TRAVEL, and the number of travllers either adults or children or both. Once enter also click SEARCH button.
+
+[RecFlightsActivity](https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/blob/development/flight/app/src/main/java/com/flight/presentation/RecFlightsActivity.java)
+
+This file open a new flight activity containing travellers flight options and adds ability to reserve a certain flight.
 
 ## Business Logic Layer
 
