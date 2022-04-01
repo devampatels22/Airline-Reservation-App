@@ -35,7 +35,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class MainActivityTest extends TestCase {
+public class IntegrationTest extends TestCase {
 
 //    @Rule
 //    public ActivityTestRule<MainActivity> mActivityRule =
@@ -80,9 +80,6 @@ public class MainActivityTest extends TestCase {
         onView(withId(R.id.child_checkbox_id)).perform(click());
         onView(withId(R.id.children_num_edit_id)).check(matches(isEnabled()));
         onView(withId(R.id.children_num_edit_id)).check(matches(withText("1")));
-        onView(withId(R.id.child_checkbox_id)).perform(click());
-        onView(withId(R.id.children_num_edit_id)).check(matches(isNotEnabled()));
-        onView(withId(R.id.children_num_edit_id)).check(matches(withText("")));
     }
 
     @Test
