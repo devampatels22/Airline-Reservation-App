@@ -1,6 +1,6 @@
 package com.flight.persistence.hsqldb;
 
-import com.flight.persistence.Flight;
+import com.flight.objects.Flight;
 import com.flight.persistence.IHsqldbFlights;
 
 import java.sql.Connection;

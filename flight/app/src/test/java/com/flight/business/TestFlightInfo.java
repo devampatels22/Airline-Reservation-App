@@ -1,5 +1,5 @@
 package com.flight.business;
-import com.flight.persistence.Flight;
+import com.flight.objects.Flight;
 
 import static org.junit.Assert.*;
 

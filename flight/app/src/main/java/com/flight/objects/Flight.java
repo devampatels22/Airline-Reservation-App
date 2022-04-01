@@ -1,4 +1,4 @@
-package com.flight.persistence;
+package com.flight.objects;
 
 public class Flight {
     //just a class to hold all info pertaining to a flight

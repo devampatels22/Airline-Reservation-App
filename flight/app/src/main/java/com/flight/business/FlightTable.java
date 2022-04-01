@@ -1,9 +1,6 @@
 package com.flight.business;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import com.flight.persistence.Flight;
 
 public class FlightTable {
 

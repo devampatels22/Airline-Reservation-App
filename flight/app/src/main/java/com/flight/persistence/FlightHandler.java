@@ -1,5 +1,7 @@
 package com.flight.persistence;
 
+import com.flight.objects.Flight;
+
 public class FlightHandler implements IHsqldbFlights{
     //Able to search fake object, will implement a real database soon
 

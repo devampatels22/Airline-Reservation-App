@@ -1,14 +1,11 @@
 package com.flight.business;
-import com.flight.persistence.Flight;
+import com.flight.objects.Flight;
 
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 public class TestFlightTable {
     private Flight f;

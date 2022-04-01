@@ -1,5 +1,7 @@
 package com.flight.persistence;
 
+import com.flight.objects.Flight;
+
 import org.junit.Test;
 
 public class testTempFlights {

@@ -1,6 +1,6 @@
 package com.flight.business;
 import com.flight.application.Services;
-import com.flight.persistence.Flight;
+import com.flight.objects.Flight;
 import com.flight.persistence.IHsqldbFlights;
 
 public class SearchHandler {
