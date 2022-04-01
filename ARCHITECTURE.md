@@ -2,12 +2,12 @@
 
 ## Iteration 2 Diagram
 
-![architecture2](ARCHITECTURE2.png) <br/>
-![architecture3](ARCHITECTURE3.png) <br/>
+![architecture3](ARCHITECTURE3.png)
+
 
 ## Iteration 1 Diagram
 
-![architecture](ARCHITECTURE1.png) <br />
+![architecture](ARCHITECTURE1.png) 
 
 ## Presentation Layer
 
