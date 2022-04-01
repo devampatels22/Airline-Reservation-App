@@ -10,3 +10,6 @@ java -cp ../lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:flights/fl
 Note:  hsqdlb only works to complete tests
 Doesnt run with application hdqldb work was taking longer than expected and copying to phone is still being worked on.
 
+Note2: Application "Search Flights" button only works with (YWG,YYC), (YYC,YVR), (YYZ,YEG) combinations because 
+fakedb only holds info on those pairs
+
