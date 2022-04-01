@@ -1,7 +1,7 @@
 package com.flight.business;
 
 
-import com.flight.persistence.Flight;
+import com.flight.objects.Flight;
 
 import java.sql.Time;
 import java.util.Random;
