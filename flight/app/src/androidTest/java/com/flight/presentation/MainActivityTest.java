@@ -104,13 +104,18 @@ public class MainActivityTest extends TestCase {
         // Thread.sleep(1000);
         // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
         // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
-        // onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        // onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
         // check the Toast
-        Thread.sleep(1000);
+        // Thread.sleep(1000);
 //        onView(withText("Departure city is: Calgary YYC"))
 //                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
 //                .check(matches(isDisplayed()));
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//            onView(withText("Departure city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activity.getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+//        });
     }
 
     @Test
@@ -125,8 +130,8 @@ public class MainActivityTest extends TestCase {
         // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
         // onData(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
         // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
-        // onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        // onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
         // check the Toast
         // Thread.sleep(1000);
 //        onView(withText("Departure city is: Calgary YYC"))
@@ -144,8 +149,8 @@ public class MainActivityTest extends TestCase {
         // Thread.sleep(1000);
         // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
         // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
-        // onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        // onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
         // check the Toast
         Thread.sleep(1000);
 //        onView(withText("Arrival city is: Calgary YYC"))
@@ -165,8 +170,8 @@ public class MainActivityTest extends TestCase {
         // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
         // onView(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
         // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
-        // onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        // onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
         // check the Toast
         Thread.sleep(1000);
 //        onView(withText("Arrival city is: Calgary YYC"))
@@ -176,7 +181,7 @@ public class MainActivityTest extends TestCase {
 
     @Test
     public void searchFlightsTest() {
-        // onView(withId(R.id.search_flights_bttn_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.search_flights_bttn_id)).check(matches(isDisplayed()));
         // onView(withId(R.id.search_flights_bttn_id)).perform(click());
         // TO DO in i3
     }
