@@ -93,6 +93,7 @@ public class  FlightsInfo{
         return tt;
     }
 
+    //returns a specific price for this flight info
     public double getPrice(){
         return fPrice;
     }
