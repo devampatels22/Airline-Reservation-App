@@ -7,6 +7,8 @@ import com.flight.persistence.IHsqldbFlights;
 import com.flight.persistence.hsqldb.FlightPersistenceHSQLDB;
 
 public class Services {
+
+    private static String dbName="flights";
     private static IHsqldbFlights fp = null;
     private static FlightHandler fh = null;
     private static FakeDB fakeDBPersistence = null;
@@ -23,7 +25,7 @@ public class Services {
     {
         if (fp == null)
         {
-            fp = new FlightPersistenceHSQLDB(Main.getDBPathName());
+            fp = new FlightPersistenceHSQLDB(dbName);
         }
 
         return fp;
@@ -37,5 +39,9 @@ public class Services {
         }
 
         return fakeDBPersistence;
+    }
+
+    public static String getDBPathName() {
+        return dbName;
     }
 }

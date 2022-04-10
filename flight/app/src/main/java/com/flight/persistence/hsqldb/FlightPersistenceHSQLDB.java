@@ -12,8 +12,16 @@ import java.sql.Statement;
 public class FlightPersistenceHSQLDB implements IHsqldbFlights {
 
     private final String dbPath;
-
     public FlightPersistenceHSQLDB(final String dbPath) {
+        try {
+            Class.forName("org.hsqldb.jdbcDriver").newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         this.dbPath = dbPath;
     }
 
@@ -24,24 +32,26 @@ public class FlightPersistenceHSQLDB implements IHsqldbFlights {
     @Override
     public Flight search(String departureCityCode, String arrivalCityCode) {
         Flight x = null;
+        String db = "jdbc:hsqldb:hsql://localhost/flights;ifexists=true";
+        String user = "SA";
+        String password = "";
 
-        try (final Connection conn = connection()) {
+        try (final Connection conn = DriverManager.getConnection(db, user, password);) {
             final Statement st = conn.createStatement();
-            final ResultSet rs = st.executeQuery("SELECT * FROM FLIGHTS WHERE DEPART = '" + departureCityCode + "' AND ARRIVE = '" + arrivalCityCode + "'");
-            //final ResultSet rs = st.executeQuery("SELECT * FROM FLIGHTS WHERE DEPART = 'YWG' AND ARRIVE = 'YYC'");
+            final ResultSet rs = st.executeQuery("SELECT * FROM FLIGHTS WHERE DEPART = '" +departureCityCode +"' AND ARRIVE = '" + arrivalCityCode + "'");
 
-            if (rs.next()) {
+            if(rs.next()) {
                 //System.out.println("departure: " + rs.getString("DEPART") + " arrive:" + rs.getString("ARRIVE") + " distance: " + rs.getString("DISTANCE"));
-                x = new Flight(rs.getString("DEPART"), rs.getString("ARRIVE"), Integer.parseInt(rs.getString("DISTANCE")));
+                x = new Flight(rs.getString("DEPART"),rs.getString("ARRIVE"),Integer.parseInt(rs.getString("DISTANCE")));
             }
 
             rs.close();
             st.close();
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.err.println(e.getMessage());
         }
+
         return x;
     }
-
 }

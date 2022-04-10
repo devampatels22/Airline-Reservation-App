@@ -40,9 +40,9 @@ public class RecFlightsActivity extends AppCompatActivity {
 
         //The grader can chose between the 2 if they want to run the actual database or fake Databse.
         //Line 43 runs fake databse that is inside flightHandler
-        //FlightTable flightTable = searchHandler.handleFakeDB();
+        FlightTable flightTable = searchHandler.handleFakeDB();
         //Line 45 runs real database that is inside hsqldb folder
-        FlightTable flightTable = searchHandler.handleRealDB();
+        //FlightTable flightTable = searchHandler.handleRealDB();
 
         //Set up adapter for the recycler view
         RecFlightsAdapter adapter = new RecFlightsAdapter(this, flightTable);
