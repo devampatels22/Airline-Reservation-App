@@ -180,12 +180,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:clickable="false"
             android:onClick="selectTripType"
             android:text="@string/select_trip_type_switch"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
