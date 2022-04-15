@@ -10,14 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flight">
 
-        <!-- ********************** Added: for rec flight navigation bar **************** -->
+        <activity
+            android:name=".presentation.ReservationFormActivity"
+            android:exported="false"
+            android:label="Reservation"
+            android:parentActivityName=".presentation.ReservationFormActivity"/>
+
         <activity
             android:name=".presentation.RecFlightsActivity"
-            android:parentActivityName=".presentation.MainActivity"
+            android:exported="false"
             android:label="Flights"
-            android:exported="false" />
-        <!-- ********************** DONE **************** -->
-
+            android:parentActivityName=".presentation.MainActivity" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">

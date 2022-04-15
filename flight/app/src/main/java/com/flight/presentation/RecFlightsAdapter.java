@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,13 +17,18 @@ import com.flight.business.FlightTable;
 import java.util.ArrayList;
 
 public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.MyViewHolder> {
+
+    //Variable to hold recycler view interface
+    private final RecViewInterface recViewInterface;// add this to my constructor
+
     Context context;
     FlightTable flightTable;
 
-    //Constructor
-    public RecFlightsAdapter(Context context, FlightTable flightTable) {
+    public RecFlightsAdapter(Context context, FlightTable flightTable,
+                             RecViewInterface recViewInterface) {
         this.context = context;
         this.flightTable = flightTable;
+        this.recViewInterface = recViewInterface;
     }
 
     @NonNull
@@ -31,7 +37,8 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         //This is where we inflate layout (giving a look to our rows)
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_flight_row, parent, false);
-        return new RecFlightsAdapter.MyViewHolder(view);
+
+        return new RecFlightsAdapter.MyViewHolder(view, recViewInterface);
     }
 
     @Override
@@ -72,7 +79,9 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         TextView departureTime2, departureCity2, arrivalTime2, arrivalCity2, duration2;
         TextView price;
 
-        public MyViewHolder(@NonNull View itemView) {
+
+//        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecViewInterface recViewInterface) {
             super(itemView);
             //set our stuff
             departureTime1 = itemView.findViewById(R.id.dep_time1_txt_id);
@@ -88,6 +97,22 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
             duration2 = itemView.findViewById(R.id.duration2_txt_id);
 
             price = itemView.findViewById(R.id.price_txt_id);
+
+            Button reserve = itemView.findViewById(R.id.button);
+
+            //Adding an onclick listener on our item view: NOTE I WANT IT ON A BUTTON
+            reserve.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(recViewInterface != null){
+                        int pos = getAdapterPosition();
+                        if(pos != RecyclerView.NO_POSITION){//Step 6.2 ensure position is valid
+                            recViewInterface.onItemClick(pos);
+                        }
+                    }
+                }
+            });
+
         }
     }
 }
