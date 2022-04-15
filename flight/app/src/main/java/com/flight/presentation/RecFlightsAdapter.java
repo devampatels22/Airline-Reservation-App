@@ -51,16 +51,16 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         holder.departureCity1.setText(flightTable.getFlightTable().get(position).getDepCity());
         holder.arrivalTime1.setText(flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5));
         holder.arrivalCity1.setText(flightTable.getFlightTable().get(position).getArrCity());
-//        holder.duration1.setText(""+flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
+        holder.duration1.setText(""+flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
 
-//        holder.departureTime2.setText(flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5)); //to be added in iteration3
+        holder.departureTime2.setText(flightTable.getFlightTable().get(position).getDepartureTime2().substring(0,5)); //to be added in iteration3
         holder.departureCity2.setText(flightTable.getFlightTable().get(position).getArrCity());
-//        holder.arrivalTime2.setText(flightTable.getFlightTable().get(position).getDepartureTime().substring(0,5));
+        holder.arrivalTime2.setText(flightTable.getFlightTable().get(position).getArrivalTime2().substring(0,5));
         holder.arrivalCity2.setText(flightTable.getFlightTable().get(position).getDepCity());
-//        holder.duration2.setText(flightTable.getFlightTable().get(position).getDepartureTime());
+        holder.duration2.setText(flightTable.getFlightTable().get(position).getDuration());
 //        holder.price.setText("C$ "+flightTable.getFlightTable().get(position).getPrice());
-        String price1 = "C$ " + flightTable.getFlightTable().get(position).getPrice();
-        holder.price.setText(price1.substring(0,9));
+//      String price1 = "C$ " + flightTable.getFlightTable().get(position).getPrice();
+        holder.price.setText(flightTable.getFlightTable().get(position).getStrPrice());
 
 
     }

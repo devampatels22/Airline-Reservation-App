@@ -72,12 +72,14 @@ public class RecFlightsActivity extends AppCompatActivity implements RecViewInte
 
         intent.putExtra("departureCity2", flightTable.getFlightTable().get(position).getArrCity());
 //        intent.putExtra("departureTime2", flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5)); //to be added in iteration3
-        intent.putExtra("departureTime2", "8:20");
+        //intent.putExtra("departureTime2", "8:20");
+        intent.putExtra("departureTime2", flightTable.getFlightTable().get(position).getDepartureTime2().substring(0,5));
+
 //        intent.putExtra("arrivalTime2", flightTable.getFlightTable().get(position).getArrivalTime2());
         intent.putExtra("arrivalCity2", flightTable.getFlightTable().get(position).getDepCity());
 
-        String price1 = "C$ " + flightTable.getFlightTable().get(position).getPrice();
-        intent.putExtra("Price", price1.substring(0,9));
+        String price1 = flightTable.getFlightTable().get(position).getStrPrice();
+        intent.putExtra("Price", price1 );
 
         intent.putExtra("date", travelDate);
 
