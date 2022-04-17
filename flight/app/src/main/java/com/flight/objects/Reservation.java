@@ -6,14 +6,14 @@ public class Reservation {
     private String email;
     private String departure;
     private String arrival;
-    private double price;
+    private String price;
     private String date;
 
     public Reservation(){
         //do nothing
     }
 
-    public Reservation(String e, String depart, String a, double p, String d){
+    public Reservation(String e, String depart, String a, String p, String d){
         email = e;
         departure = depart;
         arrival = a;
@@ -33,7 +33,7 @@ public class Reservation {
         return arrival;
     }
 
-    public double getPrice(){
+    public String getPrice(){
         return price;
     }
 
