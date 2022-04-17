@@ -73,7 +73,7 @@ public class ReservationPersistenceHSQLDB implements IHsqldbReservations {
                 final ResultSet rs = st.executeQuery("SELECT * FROM RESERVATIONS WHERE EMAIL = '" + email +"'");
 
                 while (rs.next()) {
-                    target[iterator] = new Reservation(rs.getString("EMAIL"), rs.getString("DEPARTURE"), rs.getString("ARRIVAL"),Double.parseDouble(rs.getString("PRICE")), rs.getString("DATE"));
+                    target[iterator] = new Reservation(rs.getString("EMAIL"), rs.getString("DEPARTURE"), rs.getString("ARRIVAL"),rs.getString("PRICE"), rs.getString("DATE"));
                     iterator++;
                 }
 
