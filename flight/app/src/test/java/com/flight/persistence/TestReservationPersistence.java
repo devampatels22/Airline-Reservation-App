@@ -1,7 +1,6 @@
 package com.flight.persistence;
 
 import com.flight.application.Services;
-import com.flight.objects.Flight;
 import com.flight.objects.Reservation;
 
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class TestReservationPersistence {
         Reservation[] z;
         x.insert(y);
         z = x.search("jordon@hotmail.com");
-        assert((z[0].getDeparture()).equals("Winnipeg") && (z[0].getArrival()).equals("Calgary") && (z[0].getPrice()).equals("400.15")
+        assert((z[0].getDeparture()).equals("Winnipeg") && (z[0].getDeparture2()).equals("Calgary") && (z[0].getPrice()).equals("400.15")
             && (z[0].getDate()).equals("05/04/22"));
     }
 
@@ -33,9 +32,9 @@ public class TestReservationPersistence {
         x.insert(z);
         a = x.search("jordon@hotmail.com");
         System.out.println(a.length);
-        assert((a[1].getDeparture()).equals("Winnipeg") && (a[1].getArrival()).equals("Edmonton") && (a[1].getPrice()).equals("400.15")
+        assert((a[1].getDeparture()).equals("Winnipeg") && (a[1].getDeparture2()).equals("Edmonton") && (a[1].getPrice()).equals("400.15")
                 && (a[1].getDate()).equals("05/04/22"));
-        assert((a[2].getDeparture()).equals("Toronto") && (a[2].getArrival()).equals("Vancouver") && (a[2].getPrice()).equals("800.15")
+        assert((a[2].getDeparture()).equals("Toronto") && (a[2].getDeparture2()).equals("Vancouver") && (a[2].getPrice()).equals("800.15")
                 && (a[2].getDate()).equals("05/04/22"));
     }
 

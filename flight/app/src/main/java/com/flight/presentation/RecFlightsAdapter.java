@@ -51,7 +51,7 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         holder.departureCity1.setText(flightTable.getFlightTable().get(position).getDepCity());
         holder.arrivalTime1.setText(flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5));
         holder.arrivalCity1.setText(flightTable.getFlightTable().get(position).getArrCity());
-        holder.duration1.setText(""+flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
+        holder.duration1.setText(flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
 
         holder.departureTime2.setText(flightTable.getFlightTable().get(position).getDepartureTime2().substring(0,5)); //to be added in iteration3
         holder.departureCity2.setText(flightTable.getFlightTable().get(position).getArrCity());

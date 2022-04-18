@@ -1,6 +1,5 @@
 package com.flight.persistence.hsqldb;
 
-import com.flight.objects.Flight;
 import com.flight.objects.Reservation;
 import com.flight.persistence.IHsqldbReservations;
 
@@ -35,7 +34,7 @@ public class ReservationPersistenceHSQLDB implements IHsqldbReservations {
             final PreparedStatement st = c.prepareStatement("INSERT INTO RESERVATIONS VALUES(?, ?, ?, ?, ?)");
             st.setString(1, saveThis.getEmail());
             st.setString(2, saveThis.getDeparture());
-            st.setString(3, saveThis.getArrival());
+            st.setString(3, saveThis.getDeparture2());
             st.setString(4, ""+saveThis.getPrice());
             st.setString(5, saveThis.getDate());
 
