@@ -45,20 +45,21 @@ public class IntegrationTest extends TestCase {
     public ActivityScenarioRule<MainActivity> activityScenarioRule
             = new ActivityScenarioRule<>(MainActivity.class);
 
-    @Test
-    public void tripTypeTest() {
-        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
-        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
-        onView(withId(R.id.select_trip_type_id)).perform(click());
-        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
-        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
-        onView(withId(R.id.select_trip_type_id)).perform(click());
-        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
-    }
+    //Decided to move to only round trips
+//    @Test
+//    public void tripTypeTest() {
+//        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
+//        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
+//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
+//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
+//        onView(withId(R.id.select_trip_type_id)).perform(click());
+//        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
+//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
+//        onView(withId(R.id.select_trip_type_id)).perform(click());
+//        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
+//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
+//    }
 
     @Test
     public void adultTravelOptionTest() {
