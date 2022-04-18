@@ -31,12 +31,14 @@ public class ReservationPersistenceHSQLDB implements IHsqldbReservations {
 
         try(final Connection c = DriverManager.getConnection(db, user, password)){*/
         try (final Connection c = connection()) {
-            final PreparedStatement st = c.prepareStatement("INSERT INTO RESERVATIONS VALUES(?, ?, ?, ?, ?)");
+            final PreparedStatement st = c.prepareStatement("INSERT INTO RESERVATIONS VALUES(?, ?, ?, ?, ?, ?, ?)");
             st.setString(1, saveThis.getEmail());
-            st.setString(2, saveThis.getDeparture());
-            st.setString(3, saveThis.getDeparture2());
-            st.setString(4, ""+saveThis.getPrice());
-            st.setString(5, saveThis.getDate());
+            st.setString(2, saveThis.getDate());
+            st.setString(3, saveThis.getDepTime());
+            st.setString(4, saveThis.getDeparture());
+            st.setString(5, saveThis.getDepTime2());
+            st.setString(6, saveThis.getDeparture2());
+            st.setString(7, saveThis.getPrice());
 
             st.executeUpdate();
 
@@ -72,7 +74,8 @@ public class ReservationPersistenceHSQLDB implements IHsqldbReservations {
                 final ResultSet rs = st.executeQuery("SELECT * FROM RESERVATIONS WHERE EMAIL = '" + email +"'");
 
                 while (rs.next()) {
-                    target[iterator] = new Reservation(rs.getString("EMAIL"), rs.getString("DEPARTURE"), rs.getString("ARRIVAL"),rs.getString("PRICE"), rs.getString("DATE"));
+                    target[iterator] = new Reservation(rs.getString("EMAIL"), rs.getString("DATE"), rs.getString("DEPARTURETIME"),rs.getString("DEPARTURE"), rs.getString("DEPARTURETIMETWO"),
+                            rs.getString("DEPARTURETWO"), rs.getString("PRICE"));
                     iterator++;
                 }
 
