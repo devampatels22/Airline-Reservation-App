@@ -2,11 +2,17 @@ package com.flight.presentation;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.clearText;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.ComponentNameMatchers.hasShortClassName;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isChecked;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -16,11 +22,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.isNotEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
+import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -45,21 +53,25 @@ public class IntegrationTest extends TestCase {
     public ActivityScenarioRule<MainActivity> activityScenarioRule
             = new ActivityScenarioRule<>(MainActivity.class);
 
-    //Decided to move to only round trips
-//    @Test
-//    public void tripTypeTest() {
-//        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
-//        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
-//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
-//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
-//        onView(withId(R.id.select_trip_type_id)).perform(click());
-//        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
-//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
-//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
-//        onView(withId(R.id.select_trip_type_id)).perform(click());
-//        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
-//        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
-//    }
+//    @Rule
+//    public IntentsTestRule<RecFlightsActivity> intentsTestRule =
+//            new IntentsTestRule<>(RecFlightsActivity.class);
+
+
+    @Test
+    public void tripTypeTest() {
+        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
+        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
+        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
+        onView(withId(R.id.select_trip_type_id)).perform(click());
+        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
+        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
+        onView(withId(R.id.select_trip_type_id)).perform(click());
+        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
+        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
+    }
 
     @Test
     public void adultTravelOptionTest() {
@@ -150,7 +162,7 @@ public class IntegrationTest extends TestCase {
          onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
          onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
         // check the Toast
-        Thread.sleep(1000);
+        // Thread.sleep(1000);
 //        onView(withText("Arrival city is: Calgary YYC"))
 //                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
 //                .check(matches(isDisplayed()));
@@ -180,8 +192,29 @@ public class IntegrationTest extends TestCase {
     @Test
     public void searchFlightsTest() {
         onView(withId(R.id.search_flights_bttn_id)).check(matches(isDisplayed()));
-        // onView(withId(R.id.search_flights_bttn_id)).perform(click());
-        // TO DO in i3
+//        onView(withId(R.id.select_trip_type_id)).perform(click());
+//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Edmonton YEG"))).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Edmonton YEG")));
+//        onView(withId(R.id.select_dates_edit)).perform(click());
+//        onView(withId(R.id.select_dates_edit)).perform(click());
+        onView(withId(R.id.select_dates_edit)).perform(clearText(), typeText("May 30 - May 31"), closeSoftKeyboard());
+        onView(withId(R.id.search_flights_bttn_id)).perform(click());
+        onView(withId(R.id.flights_recycler_view_id)).check(matches(isDisplayed()));
+//        intended(allOf(
+//                hasExtra("departureCity","Calgary YYC"),
+//                hasExtra("arrivalCity", "Edmonton YEG"),
+//                hasExtra("travelDate", "May 30 - May 31"),
+//                hasExtra("adultNum", "1"),
+//                hasExtra("childrenNum", ""),
+//                toPackage("com.flight.presentation.RecFlightsActivity")
+//        ));
     }
 
 }
