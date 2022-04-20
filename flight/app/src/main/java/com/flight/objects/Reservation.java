@@ -43,7 +43,7 @@ public class Reservation {
     }
 
     public String getDeparture2(){
-        return departure2;
+        return departure2 ;
     }
 
     public String getPrice(){
