@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.flight.R;
 import com.flight.application.Main;
 import com.flight.business.AccessCityCode;
+import com.flight.business.ResSearchHandler;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -36,6 +37,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -53,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
     private ListView searchCityCode_ListView;
     private String userChoice_departureCityCode; // result
     private String userChoice_arrivalCityCode;   // result
+
+    //View Reservations variables
+    TextView email, resInfo;
+    String emailString;
+    Dialog loginDialog, resInfoDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -409,6 +416,54 @@ public class MainActivity extends AppCompatActivity {
                 in.close();
             }
         }
+    }
+
+
+    //Open loginDialog
+    public void openLoginDialog(View view){
+        loginDialog = new Dialog(this);
+        loginDialog.setContentView(R.layout.view_res_login_dialog);
+        loginDialog.show();
+    }
+
+    public void dismissLogin(View view){
+        loginDialog.dismiss();
+    }
+
+    //Show reservation info
+    public void showUserReservations(View view){
+        email = loginDialog.findViewById(R.id.email_login_txt_id);
+        emailString = email.getText().toString();
+        if(!emailString.contains("@")) {
+            email.setError("Enter valid email");
+        }else{
+            resInfoDialog = new Dialog(this);
+            resInfoDialog.setContentView(R.layout.view_res_info);
+            resInfo = resInfoDialog.findViewById(R.id.res_info_id);
+
+            ResSearchHandler resSearchHandler = new ResSearchHandler(emailString);
+//            resSearchHandler.getResTable();
+//            resInfo.append("RUNNING BEFORE ");
+            //Set up reservation info
+            for(int i=0; i<resSearchHandler.getResTable().size(); i++){
+//                resInfo.append("RUNNING IN FOR LOOP ");
+                resInfo.append("\nReservation Info for: "+ resSearchHandler.getResTable().get(i).getDate());
+                resInfo.append("\n\t\t\t    Departing Time: "+ resSearchHandler.getResTable().get(i).getdepTime());
+                resInfo.append("\n\t\t\t    Departing City: "+ resSearchHandler.getResTable().get(i).getDepart());
+                resInfo.append("\n\t\t\t    Returning Time: "+ resSearchHandler.getResTable().get(i).getdepTime2());
+                resInfo.append("\n\t\t\t    Returning City: "+ resSearchHandler.getResTable().get(i).getDepart2());
+                resInfo.append("\n\t\t\t    Reservation Total Price: "+ resSearchHandler.getResTable().get(i).getPrice());
+                resInfo.append("\n\n   ");
+            }
+            //display reservation info to the user
+            resInfoDialog.show();
+        }
+    }
+
+
+    public void dismissResInfo(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 }

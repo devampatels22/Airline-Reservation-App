@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.flight.R;
+import com.flight.business.ResInfo;
+import com.flight.business.SearchHandler;
+import com.flight.objects.Reservation;
 
 public class ReservationFormActivity extends AppCompatActivity {
 
@@ -22,7 +25,7 @@ public class ReservationFormActivity extends AppCompatActivity {
     TextView dialogMsg;
     Button dialogBttn;
 
-    String traveldate;
+    String traveldate, departureTimeStr, departureCityStr, returnTimeStr, returnCityStr, tripPriceStr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,23 +60,37 @@ public class ReservationFormActivity extends AppCompatActivity {
 
 
         departureTime.setText(departureTime1);
+        departureTimeStr = departureTime.getText().toString();
+
         departureCity.setText(departureCity1);
+        departureCityStr = departureCity.getText().toString();
+
         returnTime.setText(departureTime2);
+        returnTimeStr = returnTime.getText().toString();
+
         returnCity.setText(arrivalCity1);
+        returnCityStr = returnCity.getText().toString();
+
         tripPrice.setText(price);
+        tripPriceStr = tripPrice.getText().toString();
+
     }
 
     public void saveForm(View view) { //this will be called directly on the button
 
         String emailString = email.getText().toString();
         String nameString = name.getText().toString();
+
         //can definitely do more validations here including name as well
         if(!emailString.contains("@")){
             email.setError("Enter valid email");
         }else{
             //will be sending the travel date, departureTime, departureCity, returnTime, returnCity, tripPrice, email to database
-            //LOGIC LAYER TEAM AND if the information is saved then
-            //will also be showing user a dialog saying they can view there information on the home page once saved
+            ResInfo resInfo = new ResInfo(emailString, traveldate, departureTimeStr,
+                    departureCityStr, returnTimeStr, returnCityStr, tripPriceStr);
+            resInfo.addResInfo();
+
+            //Showing user a dialog saying they can view there information on the home page once saved
             Dialog dialog = new Dialog(this);
             dialog.setContentView(R.layout.reservation_dialog);
             dialog.show();
