@@ -3,12 +3,14 @@ package com.flight.persistence;
 //construct with no parameters to create fake database
 //can use search for a record using the name of the city
 
-public class CityCodesArray implements FakeDB{
+import com.flight.objects.CityCode;
+
+public class CityCodesStub implements IHsqldbCityCodes {
 
     private final int NUMCITIES = 13;
     private CityCode[] myCityCodes;
 
-    public CityCodesArray() {
+    public CityCodesStub() {
         myCityCodes = new CityCode[NUMCITIES];
         this.initializeArray();
     }

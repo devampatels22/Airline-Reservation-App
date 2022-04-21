@@ -4,16 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import com.flight.persistence.CityCode;
-import com.flight.utils.TestUtils;
+import com.flight.objects.CityCode;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class AccessCityCodeIT {
     private AccessCityCode accessCityCode;
@@ -24,7 +21,7 @@ public class AccessCityCodeIT {
     public void setUp() throws IOException {
         // this.tempDB = TestUtils.copyDB();
         // final CoursePersistence persistence = new CoursePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        this.accessCityCode = new AccessCityCode();
+        this.accessCityCode = new AccessCityCode(true);
     }
 
     @Test
