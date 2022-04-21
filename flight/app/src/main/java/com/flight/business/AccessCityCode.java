@@ -2,17 +2,18 @@ package com.flight.business;
 
 import com.flight.application.Services;
 import com.flight.objects.City;
-import com.flight.persistence.CityCode;
-import com.flight.persistence.FakeDB;
+import com.flight.objects.CityCode;
+import com.flight.persistence.IHsqldbCityCodes;
 
 public class AccessCityCode {
-    private FakeDB fakeDB;
+    private IHsqldbCityCodes fakeDB;
     private CityCode[] cityArray;
     private City city;// city obj includes CityName and CityCode
 
     public AccessCityCode() {
         // access fake database
-        fakeDB = Services.getFakeDBPersistence();
+        //fakeDB = Services.getFakeDBPersistence();
+        fakeDB = Services.getCityCodePersistence();
         // get city array from database
         cityArray = fakeDB.getArray();
     }

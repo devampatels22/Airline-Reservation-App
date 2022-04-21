@@ -1,4 +1,4 @@
-package com.flight.persistence;
+package com.flight.objects;
 
 //just and object to hold a city name and code pair
 public class CityCode {

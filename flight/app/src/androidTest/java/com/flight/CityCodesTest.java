@@ -1,17 +1,28 @@
-package com.flight.business;
+package com.flight;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+
+import com.flight.business.AccessCityCode;
+import com.flight.objects.City;
+import com.flight.objects.CityCode;
+import com.flight.presentation.MainActivity;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+public class CityCodesTest {
+    @Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule
+            = new ActivityScenarioRule<>(MainActivity.class);
 
-import com.flight.objects.City;
-import com.flight.objects.CityCode;
-
-
-public class TestSearchCityCode {
     private String query;
     private AccessCityCode searchLogic;
     private CityCode[] fkDB;

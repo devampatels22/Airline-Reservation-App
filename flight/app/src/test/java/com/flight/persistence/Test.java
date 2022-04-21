@@ -4,9 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.flight.objects.CityCode;
+
 class test {
 
-    private CityCodesArray x = new CityCodesArray();
+    private CityCodesStub x = new CityCodesStub();
     private CityCode y;
 
     @Test
