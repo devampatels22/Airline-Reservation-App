@@ -18,6 +18,13 @@ public class AccessCityCode {
         cityArray = fakeDB.getArray();
     }
 
+    public AccessCityCode(boolean test){
+        //a special constructor for testing
+        //use this if u want to use the fake db
+        fakeDB = Services.getFakeDBPersistence();
+        cityArray = fakeDB.getArray();
+    }
+
     // this constructor is for unit testing
     public AccessCityCode(CityCode[] cityArr_testy) {
         // get city array from database

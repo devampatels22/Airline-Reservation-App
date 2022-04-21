@@ -23,7 +23,7 @@ public class TestSearchCityCode {
 
     @Before
     public void setUp() {
-        searchLogic = new AccessCityCode();
+        searchLogic = new AccessCityCode(true);
     }
 
     @Test

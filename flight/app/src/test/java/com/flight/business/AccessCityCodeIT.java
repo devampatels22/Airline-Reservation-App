@@ -21,7 +21,7 @@ public class AccessCityCodeIT {
     public void setUp() throws IOException {
         // this.tempDB = TestUtils.copyDB();
         // final CoursePersistence persistence = new CoursePersistenceHSQLDB(this.tempDB.getAbsolutePath().replace(".script", ""));
-        this.accessCityCode = new AccessCityCode();
+        this.accessCityCode = new AccessCityCode(true);
     }
 
     @Test
