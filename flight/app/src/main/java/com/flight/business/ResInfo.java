@@ -6,9 +6,22 @@ import com.flight.persistence.IHsqldbReservations;
 
 public class ResInfo {
     private Reservation res;
-    private IHsqldbReservations resDB = Services.getReservationPersistence();
+    private IHsqldbReservations resDB;
 
     public ResInfo(String email, String date, String depTime, String depart, String depTime2, String depart2, String price ){
+        this.resDB = Services.getReservationPersistence();
+        try{
+
+            res = new Reservation(email, date, depTime, depart, depTime2, depart2, price);
+
+        } catch (NumberFormatException e){
+            System.out.println("ERROR: " +e +" Possibly - ResInfo takes all STRING for CONSTRUCTOR!");
+            throw e;
+        }
+    }
+
+    public ResInfo(String email, String date, String depTime, String depart, String depTime2, String depart2, String price, IHsqldbReservations reservationsPersistence ){
+        this.resDB = reservationsPersistence;
         try{
 
             res = new Reservation(email, date, depTime, depart, depTime2, depart2, price);
