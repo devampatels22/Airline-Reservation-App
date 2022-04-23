@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 import com.flight.objects.CityCode;
 
-class test {
+class TestCityCodeStub {
 
     private CityCodesStub x = new CityCodesStub();
     private CityCode y;
