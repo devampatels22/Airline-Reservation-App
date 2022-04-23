@@ -4,7 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 import com.flight.business.TestFlightInfo;
-import com.flight.business.TestFlightSearch;
 import com.flight.business.TestFlightTable;
 import com.flight.business.TestSearchCityCode;
 import com.flight.business.TestSearchHandler;
