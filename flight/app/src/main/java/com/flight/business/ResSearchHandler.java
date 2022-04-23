@@ -9,10 +9,11 @@ import java.util.ArrayList;
 public class ResSearchHandler {
     private String email;
     private Reservation[] res;
-    private IHsqldbReservations resDB = Services.getReservationPersistence();
+    private IHsqldbReservations resDB;
     private ArrayList<ResInfo> ri;
     //Constructor takes in String email;
     public ResSearchHandler(String email){
+        this.resDB = Services.getReservationPersistence();
         this.email = email;
     }
 
@@ -24,6 +25,11 @@ public class ResSearchHandler {
 //        System.out.println("SearchEmail: "+rh.searchEmail());
 //
 //    }
+
+    public ResSearchHandler(final IHsqldbReservations reservationsPersistence, String email) {
+        this(email);
+        this.resDB = reservationsPersistence;
+    }
 
     //checks to see if the email exist
     //if it does than only call getResTable() method that will return array list
