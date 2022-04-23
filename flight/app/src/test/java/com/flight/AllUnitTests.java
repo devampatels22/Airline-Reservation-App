@@ -8,6 +8,7 @@ import com.flight.business.TestFlightSearch;
 import com.flight.business.TestFlightTable;
 import com.flight.business.TestSearchCityCode;
 import com.flight.business.TestSearchHandler;
+import com.flight.business.TestResInfo;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -17,7 +18,8 @@ import com.flight.business.TestSearchHandler;
         //TestFlightSearch.class,
         TestFlightTable.class,
         TestSearchCityCode.class,
-        TestSearchHandler.class
+        TestSearchHandler.class,
+        TestResInfo.class
 })
 
 public class AllUnitTests {
