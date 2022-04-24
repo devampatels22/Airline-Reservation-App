@@ -83,11 +83,11 @@ public class SystemTest extends TestCase {
         onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
         onView(withId(R.id.select_trip_type_id)).perform(click());
         // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
-        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
-        onView(withId(R.id.select_trip_type_id)).perform(click());
+        // onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+        // onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
+        //onView(withId(R.id.select_trip_type_id)).perform(click());
         // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
+        //onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
     }
 
     @Test
