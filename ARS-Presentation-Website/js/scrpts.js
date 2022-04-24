@@ -64,10 +64,10 @@ $(document).ready(function () {
 
     var series = [{
         name: 'Estimated Time',
-        data: [6, 7, 12]
+        data: [16, 17, 26]
     }, {
         name: 'Actual Time',
-        data: [7, 9, 14]
+        data: [17, 19, 25]
     }];
 
     var json = {};
