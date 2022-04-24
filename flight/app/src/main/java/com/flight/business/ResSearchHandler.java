@@ -13,8 +13,8 @@ public class ResSearchHandler {
     private ArrayList<ResInfo> ri;
     //Constructor takes in String email;
     public ResSearchHandler(String email){
-        this.resDB = Services.getReservationPersistence();
         this.email = email;
+        this.resDB = Services.getReservationPersistence();
     }
 
 //    public static void main(String[] args){

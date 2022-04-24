@@ -32,17 +32,17 @@ public class AccessReservationIT {
     public void testSearchReservations() {
 
         resInfo.addResInfo();
-
         ArrayList<ResInfo> table = resSearchHandler.getResTable();
-
         assertFalse(table.isEmpty());
         assertEquals(1, table.size());
-
         System.out.println("Finished test AccessCourses");
+
     }
     @After
     public void tearDown() {
         // reset DB
         this.tempDB.delete();
     }
+
+    //add more test
 }
