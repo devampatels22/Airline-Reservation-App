@@ -1,4 +1,4 @@
-package com.flight.presentation;
+package com.flight;
 
 import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
@@ -439,16 +439,16 @@ public class SystemTest extends TestCase {
 //                                                0)),
 //                                0),
 //                        isDisplayed()));
-//        appCompatEditText9.perform(replaceText("May 30 ¨C May 31"));
+//        appCompatEditText9.perform(replaceText("May 30 ï¿½C May 31"));
 //        appCompatEditText9.perform(closeSoftKeyboard());
 
         ViewInteraction appCompatEditText9 = onView(
                 allOf(withId(R.id.select_dates_edit), isDisplayed()));
-        appCompatEditText9.perform(replaceText("May 30 ¨C May 31"));
+        appCompatEditText9.perform(replaceText("May 30 ï¿½C May 31"));
         appCompatEditText9.perform(closeSoftKeyboard());
 
 //        ViewInteraction appCompatEditText10 = onView(
-//                allOf(withId(R.id.select_dates_edit), withText("May 30 ¨C May 31"),
+//                allOf(withId(R.id.select_dates_edit), withText("May 30 ï¿½C May 31"),
 //                        childAtPosition(
 //                                allOf(withId(R.id.linearLayout2),
 //                                        childAtPosition(
@@ -459,18 +459,18 @@ public class SystemTest extends TestCase {
 //        appCompatEditText10.perform(closeSoftKeyboard());
 
 //        ViewInteraction editText12 = onView(
-//                allOf(withId(R.id.select_dates_edit), withText("May 30 ¨C May 31"),
+//                allOf(withId(R.id.select_dates_edit), withText("May 30 ï¿½C May 31"),
 //                        withParent(allOf(withId(R.id.linearLayout2),
 //                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
 //                        isDisplayed()));
-//        editText12.check(matches(withText("May 30 ¨C May 31")));
+//        editText12.check(matches(withText("May 30 ï¿½C May 31")));
 //
 //        ViewInteraction editText13 = onView(
-//                allOf(withId(R.id.select_dates_edit), withText("May 30 ¨C May 31"),
+//                allOf(withId(R.id.select_dates_edit), withText("May 30 ï¿½C May 31"),
 //                        withParent(allOf(withId(R.id.linearLayout2),
 //                                withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class)))),
 //                        isDisplayed()));
-//        editText13.check(matches(withText("May 30 ¨C May 31")));
+//        editText13.check(matches(withText("May 30 ï¿½C May 31")));
 
         ViewInteraction materialButton2 = onView(
                 allOf(withId(R.id.search_flights_bttn_id), withText("Search Flights"),
@@ -523,16 +523,16 @@ public class SystemTest extends TestCase {
         materialButton3.perform(click());
 
         ViewInteraction textView3 = onView(
-                allOf(withId(R.id.flight_info_txtview_id), withText("Flight Summary For May 30 ¨C May 31"),
+                allOf(withId(R.id.flight_info_txtview_id), withText("Flight Summary For May 30 ï¿½C May 31"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
         textView3.check(matches(isDisplayed()));
 
         ViewInteraction textView4 = onView(
-                allOf(withId(R.id.flight_info_txtview_id), withText("Flight Summary For May 30 ¨C May 31"),
+                allOf(withId(R.id.flight_info_txtview_id), withText("Flight Summary For May 30 ï¿½C May 31"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
-        textView4.check(matches(withText("Flight Summary For May 30 ¨C May 31")));
+        textView4.check(matches(withText("Flight Summary For May 30 ï¿½C May 31")));
 
         ViewInteraction textView5 = onView(
                 allOf(withId(R.id.dep_city_txt_id), withText("YYC"),
