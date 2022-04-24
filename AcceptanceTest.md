@@ -25,4 +25,4 @@
 15. On the main activity click on "view reservations" button
 16. Enter the email you used to create a reservation and you should be able to view all your reservations.
 
-Link to our code simulation in Android studio here
+Link to our code simulation in Android studio [here](https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/blob/MainClean/flight/app/src/androidTest/java/com/flight/presentation/MainActivityTest.java).
