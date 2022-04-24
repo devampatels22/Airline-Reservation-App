@@ -13,8 +13,8 @@ public class ResSearchHandler {
     private ArrayList<ResInfo> ri;
     //Constructor takes in String email;
     public ResSearchHandler(String email){
-        this.resDB = Services.getReservationPersistence();
         this.email = email;
+        this.resDB = Services.getReservationPersistence();
     }
 
 //    public static void main(String[] args){
@@ -33,7 +33,7 @@ public class ResSearchHandler {
 
     //checks to see if the email exist
     //if it does than only call getResTable() method that will return array list
-    public boolean searchEmail(){
+    public boolean emailExist(){
         boolean result;
         if(getResTable().isEmpty() == true){
             result = false;
@@ -47,7 +47,7 @@ public class ResSearchHandler {
     public ArrayList<ResInfo> getResTable(){
         ri= new ArrayList<ResInfo>();
         res = resDB.search(email);
-        if(res.length != 0){
+        if(res != null){
             for(int i = 0; i < res.length; i ++){
                 String email = res[i].getEmail();
                 String dep = res[i].getDeparture();

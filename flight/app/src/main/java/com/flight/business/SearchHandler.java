@@ -4,6 +4,7 @@ import com.flight.objects.Flight;
 import com.flight.persistence.IHsqldbFlights;
 
 public class SearchHandler {
+    private IHsqldbFlights ihsqldbFlights;
     private String arrivalCity;
     private String departureCity;
     private String date;
@@ -17,6 +18,12 @@ public class SearchHandler {
         } catch (Exception e){
             System.out.println("Possibly nothing in str[1] for departure or arrival city:" +e);
         }
+        ihsqldbFlights = Services.getFlightPersistence();
+    }
+
+    public SearchHandler(String[] departure, String[] arrival, String d, final IHsqldbFlights ihsqldbFlights){
+        this(departure,arrival,d);
+        this.ihsqldbFlights = ihsqldbFlights;
 
     }
 
@@ -29,6 +36,11 @@ public class SearchHandler {
         } catch (Exception e){
             System.out.println("Possibly nothing in str[1] for departure or arrival city:" +e);
         }
+        ihsqldbFlights = Services.getFlightPersistence();
+    }
+    public SearchHandler(String departure, String arrival, String d, final IHsqldbFlights ihsqldbFlights){
+        this(departure,arrival,d);
+        this.ihsqldbFlights = ihsqldbFlights;
     }
     //**********************************************************************************************
 
@@ -42,17 +54,17 @@ public class SearchHandler {
 //        System.out.println("FLIGHT TABLE: "+ ss.getDate()+"\n" + flt );
 //    }
 
-
+    //implementing fake database for the purpose of testing
     private void populateFakeDB(){
-        IHsqldbFlights fh = Services.getFlightHandler();
-        Flight f = fh.search(departureCity,arrivalCity);
+        IHsqldbFlights fhfk = Services.getFlightHandler();
+        Flight f = fhfk.search(departureCity,arrivalCity);
         FlightsInfo fi = new FlightsInfo(f);
         table = new FlightTable(fi);
     }
 
     private void populateRealDB(){
-        IHsqldbFlights fh = Services.getFlightPersistence();
-        Flight x = fh.search(departureCity,arrivalCity);
+
+        Flight x = ihsqldbFlights.search(departureCity,arrivalCity);
         FlightsInfo ii = new FlightsInfo(x);
         table = new FlightTable(ii);
 
