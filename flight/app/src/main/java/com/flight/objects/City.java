@@ -1,5 +1,7 @@
 package com.flight.objects;
 
+import com.flight.persistence.CityCode;
+
 public class City {
     private final String cityName;
     private final String cityCode;

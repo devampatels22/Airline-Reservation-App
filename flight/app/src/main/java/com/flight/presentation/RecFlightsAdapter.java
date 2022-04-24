@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,18 +16,13 @@ import com.flight.business.FlightTable;
 import java.util.ArrayList;
 
 public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.MyViewHolder> {
-
-    //Variable to hold recycler view interface
-    private final RecViewInterface recViewInterface;// add this to my constructor
-
     Context context;
     FlightTable flightTable;
 
-    public RecFlightsAdapter(Context context, FlightTable flightTable,
-                             RecViewInterface recViewInterface) {
+    //Constructor
+    public RecFlightsAdapter(Context context, FlightTable flightTable) {
         this.context = context;
         this.flightTable = flightTable;
-        this.recViewInterface = recViewInterface;
     }
 
     @NonNull
@@ -37,8 +31,7 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         //This is where we inflate layout (giving a look to our rows)
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.recycler_flight_row, parent, false);
-
-        return new RecFlightsAdapter.MyViewHolder(view, recViewInterface);
+        return new RecFlightsAdapter.MyViewHolder(view);
     }
 
     @Override
@@ -51,16 +44,16 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         holder.departureCity1.setText(flightTable.getFlightTable().get(position).getDepCity());
         holder.arrivalTime1.setText(flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5));
         holder.arrivalCity1.setText(flightTable.getFlightTable().get(position).getArrCity());
-        holder.duration1.setText(flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
+//        holder.duration1.setText(""+flightTable.getFlightTable().get(position).getDuration()); //to be added in iteration3
 
-        holder.departureTime2.setText(flightTable.getFlightTable().get(position).getDepartureTime2().substring(0,5)); //to be added in iteration3
+//        holder.departureTime2.setText(flightTable.getFlightTable().get(position).getArrivalTime().substring(0,5)); //to be added in iteration3
         holder.departureCity2.setText(flightTable.getFlightTable().get(position).getArrCity());
-        holder.arrivalTime2.setText(flightTable.getFlightTable().get(position).getArrivalTime2().substring(0,5));
+//        holder.arrivalTime2.setText(flightTable.getFlightTable().get(position).getDepartureTime().substring(0,5));
         holder.arrivalCity2.setText(flightTable.getFlightTable().get(position).getDepCity());
-        holder.duration2.setText(flightTable.getFlightTable().get(position).getDuration());
+//        holder.duration2.setText(flightTable.getFlightTable().get(position).getDepartureTime());
 //        holder.price.setText("C$ "+flightTable.getFlightTable().get(position).getPrice());
-//      String price1 = "C$ " + flightTable.getFlightTable().get(position).getPrice();
-        holder.price.setText(flightTable.getFlightTable().get(position).getStrPrice());
+        String price1 = "C$ " + flightTable.getFlightTable().get(position).getPrice();
+        holder.price.setText(price1.substring(0,9));
 
 
     }
@@ -79,9 +72,7 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
         TextView departureTime2, departureCity2, arrivalTime2, arrivalCity2, duration2;
         TextView price;
 
-
-//        public MyViewHolder(@NonNull View itemView) {
-        public MyViewHolder(@NonNull View itemView, RecViewInterface recViewInterface) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             //set our stuff
             departureTime1 = itemView.findViewById(R.id.dep_time1_txt_id);
@@ -97,22 +88,6 @@ public class RecFlightsAdapter extends RecyclerView.Adapter<RecFlightsAdapter.My
             duration2 = itemView.findViewById(R.id.duration2_txt_id);
 
             price = itemView.findViewById(R.id.price_txt_id);
-
-            Button reserve = itemView.findViewById(R.id.button);
-
-            //Adding an onclick listener on our item view: NOTE I WANT IT ON A BUTTON
-            reserve.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(recViewInterface != null){
-                        int pos = getAdapterPosition();
-                        if(pos != RecyclerView.NO_POSITION){//Step 6.2 ensure position is valid
-                            recViewInterface.onItemClick(pos);
-                        }
-                    }
-                }
-            });
-
         }
     }
 }
