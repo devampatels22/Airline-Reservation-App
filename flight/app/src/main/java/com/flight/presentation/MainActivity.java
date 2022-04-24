@@ -445,18 +445,23 @@ public class MainActivity extends AppCompatActivity {
 //            resSearchHandler.getResTable();
 //            resInfo.append("RUNNING BEFORE ");
             //Set up reservation info
-            for(int i=0; i<resSearchHandler.getResTable().size(); i++){
+            if(resSearchHandler.emailExist() == true){
+                for(int i=0; i<resSearchHandler.getResTable().size(); i++){
 //                resInfo.append("RUNNING IN FOR LOOP ");
-                resInfo.append("\nReservation Info for: "+ resSearchHandler.getResTable().get(i).getDate());
-                resInfo.append("\n\t\t\t    Departing Time: "+ resSearchHandler.getResTable().get(i).getdepTime());
-                resInfo.append("\n\t\t\t    Departing City: "+ resSearchHandler.getResTable().get(i).getDepart());
-                resInfo.append("\n\t\t\t    Returning Time: "+ resSearchHandler.getResTable().get(i).getdepTime2());
-                resInfo.append("\n\t\t\t    Returning City: "+ resSearchHandler.getResTable().get(i).getDepart2());
-                resInfo.append("\n\t\t\t    Reservation Total Price: "+ resSearchHandler.getResTable().get(i).getPrice());
-                resInfo.append("\n\n   ");
+                    resInfo.append("\nReservation Info for: "+ resSearchHandler.getResTable().get(i).getDate());
+                    resInfo.append("\n\t\t\t    Departing Time: "+ resSearchHandler.getResTable().get(i).getdepTime());
+                    resInfo.append("\n\t\t\t    Departing City: "+ resSearchHandler.getResTable().get(i).getDepart());
+                    resInfo.append("\n\t\t\t    Returning Time: "+ resSearchHandler.getResTable().get(i).getdepTime2());
+                    resInfo.append("\n\t\t\t    Returning City: "+ resSearchHandler.getResTable().get(i).getDepart2());
+                    resInfo.append("\n\t\t\t    Reservation Total Price: "+ resSearchHandler.getResTable().get(i).getPrice());
+                    resInfo.append("\n\n   ");
+                }
+                //display reservation info to the user
+                resInfoDialog.show();
+            } else {
+                resInfo.append("\nEmail Not found! \n\t Please Try Again!");
             }
-            //display reservation info to the user
-            resInfoDialog.show();
+
         }
     }
 

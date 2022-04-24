@@ -9,7 +9,10 @@ import com.flight.persistence.IHsqldbFlights;
 import com.flight.persistence.hsqldb.FlightPersistenceHSQLDB;
 import com.flight.utils.TestUtils;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
@@ -21,6 +24,10 @@ public class AccessFlightIT {
     private SearchHandler ss;
     private File tempDB;
 
+    @BeforeClass
+    public static void Test_starts() {
+        System.out.println("Starting Integration Test AccessFlightIT\n");
+    }
     @Before
     public void setUp() throws IOException {
         this.tempDB = TestUtils.copyDB();
@@ -30,17 +37,50 @@ public class AccessFlightIT {
     }
 
     @Test
-    public void testSearchFlights() {
+    public void testSearchDate() {
 
         ArrayList<FlightsInfo> table = ss.handleRealDB().getFlightTable();
 
         assertFalse(table.isEmpty());
-        assertEquals(5, table.size());
         assertTrue("jan30".equals(ss.getDate()));
-
-        System.out.println("Finished test AccessCourses");
+        System.out.println("Finished test testSearchDate");
     }
 
-    //add more test
+
+    @Test
+    public void testFlightSize(){
+        ArrayList<FlightsInfo> table = ss.handleRealDB().getFlightTable();
+        assertFalse(table.isEmpty());
+        assertEquals(5, table.size());
+        System.out.println("Finished test testFlightSize");
+    }
+
+    @Test
+    public void testFlightDep(){
+        ArrayList<FlightsInfo> table = ss.handleRealDB().getFlightTable();
+        assertFalse(table.isEmpty());
+        assertTrue("YWG".equals(table.get(0).getDepCity()));
+        System.out.println("Finished test testFlightDep");
+    }
+
+    @Test
+    public void testFlightArr(){
+        ArrayList<FlightsInfo> table = ss.handleRealDB().getFlightTable();
+        assertFalse(table.isEmpty());
+        assertTrue("YYC".equals(table.get(0).getArrCity()));
+        System.out.println("Finished test testFlightArr");
+    }
+
+
+    @After
+    public void tearDown() {
+        // reset DB
+        this.tempDB.delete();
+    }
+
+    @AfterClass
+    public static void Test_finish() {
+        System.out.println("Finishing Integration Test AccessFlightIT\n");
+    }
 
 }
