@@ -4,6 +4,10 @@ package com.flight.business;
 import com.flight.objects.Flight;
 
 import java.sql.Time;
+import java.text.DecimalFormat;
+import java.time.Duration;
+import java.time.LocalTime;
+import java.time.OffsetTime;
 import java.util.Random;
 
 
@@ -14,6 +18,8 @@ public class  FlightsInfo{
     private int distance = 0;
     private Flight flight = null;
     private Time[] fTime;
+    private Time[] fTime2;
+    private long dur;
     private double fPrice;
 
 
@@ -25,6 +31,7 @@ public class  FlightsInfo{
             distance = f1.getDistance();
             flight = f1;
             fTime = calDepArrTime();
+            fTime2 = calDepArrTime();
             fPrice = calPrice();
         }catch (Exception e){
             System.out.println("City code does not exist in Database, Exception:" +e);
@@ -34,7 +41,7 @@ public class  FlightsInfo{
 
     //FOR TEST PURPOSE ONLY PLEASE IGNORE
 //     public static void main(String[] args){
-//         Flight f = new Flight("YWG","YYC",2000);
+//         Flight f = new Flight("YWG","YYC",1400);
 //         FlightsInfo fi = new FlightsInfo(f);
 //
 //         System.out.println(fi);
@@ -69,6 +76,9 @@ public class  FlightsInfo{
         } else if (distance >= 4500 && distance < 5000) {
             price = 1000 + rand.nextInt(10000) / 100.0;
         }
+        //formatting price to 2 decimal places
+        DecimalFormat df = new DecimalFormat("#.##");
+        price = Double.parseDouble(df.format(price));
         return price;
     }
 
@@ -81,20 +91,26 @@ public class  FlightsInfo{
         // Assign a random time and stick with it
         Random rand = new Random();
 
-        //creating random time within 16 hours range
-        final int millisInDay = 16*60*60*1000;
+        //creating random time within 24 hours range
+        final int millisInDay = 24*60*60*1000;
 
-        //flights normally start after 6 so adding it once random time is generated
-        Time t0 = new Time((long)rand.nextInt(millisInDay) + 6*60*60*1000);
+        Time t0 = new Time((long)rand.nextInt(millisInDay));
         tt[0] = t0;
         //System.out.println(t0);
-        Time t1 = new Time(t0.getTime() + 3600000L *(distance/500));
+        dur = (long)(60D * ((double) distance /500));
+        Time t1 = new Time(t0.getTime() + (long)(3600000D * ((double) distance /500)));
+        //System.out.println(t1 + " "+ t0 + " Duration " + (num/60L) +":" + (num % 60L));
         tt[1] = t1;
         return tt;
     }
-
+    //returns price of this specific FLight
     public double getPrice(){
         return fPrice;
+    }
+    //returns price of the flight in a String Format
+    //had issues with app crashing so implemented an extra function
+    public String getStrPrice(){
+        return "C$ " + fPrice;
     }
     //returns departure time as String
     public String getDepartureTime(){
@@ -103,6 +119,17 @@ public class  FlightsInfo{
     //returns Arrival time as string
     public String getArrivalTime(){
         return fTime[1].toString();
+    }
+
+    //returns Departure time for return flight
+    public String getDepartureTime2(){return fTime2[0].toString();}
+
+    //return Arrival time for return Flight
+    public String getArrivalTime2() {return fTime2[1].toString();}
+
+    //returns durations of the flight
+    public String getDuration(){
+        return (dur/60L) +":" + (dur % 60L);
     }
 
     //returns Departure City code
@@ -125,6 +152,6 @@ public class  FlightsInfo{
 
     //Simple print function to print flight info properly.
     public String toString(){
-        return getDepCity() +" "+ getArrCity() +"| DEP time "+ getDepartureTime() +"| ARR time "+ getArrivalTime() +"| Price:"+ getPrice() + "||" ;
+        return getDepCity() +" "+ getArrCity() +"| DEP time "+ getDepartureTime() +"| ARR time "+ getArrivalTime() +"| Price:"+ getPrice() + "| Duration: " + getDuration() + "||" ;
     }
 }

@@ -7,10 +7,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import com.flight.application.Services;
 import com.flight.objects.City;
-import com.flight.persistence.CityCode;
-import com.flight.persistence.FakeDB;
+import com.flight.objects.CityCode;
 
 
 public class TestSearchCityCode {
@@ -25,7 +23,7 @@ public class TestSearchCityCode {
 
     @Before
     public void setUp() {
-        searchLogic = new AccessCityCode();
+        searchLogic = new AccessCityCode(true);
     }
 
     @Test
