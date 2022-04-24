@@ -84,7 +84,7 @@
               <div class="device">
                 <div class="screen">
                   <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                  <img src="img/screenshot1.png" class="img-fluid" alt="">
+                  <img src="img/ARS-sc1.png" class="img-fluid" alt="">
                 </div>
                 <div class="button">
                   <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -159,7 +159,7 @@
               <div class="device">
                 <div class="screen">
                   <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                  <img src="img/screenshot2.png" class="img-fluid" alt="">
+                  <img src="img/ARS-sc4.png" class="img-fluid" alt="">
                 </div>
                 <div class="button">
                   <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -235,7 +235,7 @@
               <div class="device">
                 <div class="screen">
                   <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                  <img src="img/screenshot3.png" class="img-fluid" alt="">
+                  <img src="img/ARS-sc5.png" class="img-fluid" alt="">
                 </div>
                 <div class="button">
                   <!-- You can hook the "home button" to some JavaScript events or just remove it -->
@@ -262,7 +262,8 @@
             According to velocity, the time spent on each iteration grows, both in estimated and actual time. The
             overall time spent shows an upward trend. This is related to the number and difficulty of tasks processed at
             each iteration. Second, it can be seen from the graph that the actual time spent on each iteration is more
-            than the estimated time, which shows that we always underestimated the time spent during project.<br><br>
+            than the estimated time, which shows that we always underestimated the time spent during project. (Except in
+            Interation 3, we overestimated time result in less time spent on project).<br><br>
             For iteration 1, this is our first time to use Android studio, and we spent lots of time on learning Android
             development skills. For instance, UI layout, android version, 3-tier architecture, etc. For iteration 2, we
             spent much time on version control. Especially on solving merge conflict and commit graph. For iteration 3,
@@ -282,15 +283,20 @@
       <p>
         <img src="img/ARS-4.png" alt="architecture" style="width: 40%;">
       </p>
+      <p style="text-align: justify;">
+        We used the 3-tier architecture involving the presentation layer, business layer and persistent layer to help
+        organize our code.
+      </p>
 
       <h3><i class="fas fa-comment-dots"></i> How did the project change from your initial (iteration 0) vision or
         stories, or did it work out as predicted?
       </h3>
       <p style="text-align: justify;">
-        There are some small changes. In iteration 2 we had technical debt, which missed or modified features,
-        but we solved them in iteration 3, such as paying it of by moving the logic layer functionality from
-        presentation to business, or moving the test files from androidTest to Test directory, etc. Overall, we work out
-        as predicted.
+        Yes, the project did change slightly as we dropped some features that were solved intuitively changed with our
+        design such as;
+        <br> Passing trip type so that we can return one way flights or two way flights. We dropped it because we were
+        only accounting for round trip flights. <br> We also dropped the search alternate flights as our development
+        design was different than we initially planned out and would not make sense to do account for this.
       </p>
 
       <h3><i class="fas fa-comments"></i> Are you using any specific techniques covered in the course?</h3>
@@ -394,6 +400,8 @@
               </li>
               <li><span class="fa-li"><i class="fas fa-sitemap"></i></span>Update Arch diagram and other documents
               </li>
+              <li><span class="fa-li"><i class="fas fa-sitemap"></i></span>3 - tier architecture design
+              </li>
             </ul>
           </div>
         </div>
@@ -408,7 +416,8 @@
               <p>Backend / Test</p>
             </a>
             <ul class="points">
-              <li><span class="fa-li"><i class="fas fa-plug"></i></span>Connect UI, logic back-end, DB interface</li>
+              <li><span class="fa-li"><i class="fas fa-plug"></i></span>Connect UI and Logic Functionality in Back-end
+              </li>
               <li><span class="fa-li"><i class="fas fa-window-restore"></i></span>Development using Android Studio</li>
               <li><span class="fa-li"><i class="fas fa-vial"></i></span>Unit tests in Android Studio</li>
               <li><span class="fa-li"><i class="fas fa-sitemap"></i></span>3 - tier architecture design
