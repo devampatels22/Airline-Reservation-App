@@ -45,6 +45,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import com.flight.R;
+import com.flight.presentation.MainActivity;
 
 import junit.framework.TestCase;
 
