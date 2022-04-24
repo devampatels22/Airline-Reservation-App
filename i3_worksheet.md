@@ -39,5 +39,7 @@ The flightPrices are random so they are non-deterministic values that are diffic
 
 ## Velocity/teamwork
 
-Our estimation for Iteration 3 improved compared to Iteration 1 and 2 where we underestimated task completion time.  Here is a graph comparing our estimated vs actual time spent on our tasks [here.](https://code.cs.umanitoba.ca/winter-2022-a01/group-4/team-flight-4/-/blob/developmentClean/VelocityChart.jpg)
+Our estimation for Iteration 3 improved compared to Iteration 1 and 2 where we underestimated task completion time.  Here is a graph comparing our estimated vs actual time spent on our tasks 
+
+![VelocityChart](VelocityChart.jpg)
 
