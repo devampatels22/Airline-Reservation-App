@@ -118,8 +118,7 @@
                 android:background="@drawable/custom_edit"
                 android:ems="10"
                 android:inputType="number"
-                android:textAlignment="center"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -145,8 +144,7 @@
                 android:background="@drawable/custom_edit"
                 android:ems="10"
                 android:inputType="number"
-                android:textAlignment="center"
-                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -169,12 +167,12 @@
         android:layout_width="124dp"
         android:layout_height="42dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="60dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_res_bttn_id">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Switch
             android:id="@+id/select_trip_type_id"
@@ -182,12 +180,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
-            android:clickable="false"
             android:onClick="selectTripType"
             android:text="@string/select_trip_type_switch"
             android:textSize="15sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -196,19 +192,5 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="39dp" />
-
-    <Button
-        android:id="@+id/view_res_bttn_id"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_marginTop="30dp"
-        android:onClick="openLoginDialog"
-        android:text="View Reservations"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

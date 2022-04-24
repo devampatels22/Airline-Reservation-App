@@ -96,7 +96,7 @@
                         android:id="@+id/arrival_time1_txt_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5:51"
+                        android:text="5:51p"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -155,7 +155,7 @@
                         android:id="@+id/dep_time2_txt_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="8:20"
+                        android:text="8:20a"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -208,7 +208,7 @@
                         android:id="@+id/arrival_time2_txt_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1:01"
+                        android:text="1:01p"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

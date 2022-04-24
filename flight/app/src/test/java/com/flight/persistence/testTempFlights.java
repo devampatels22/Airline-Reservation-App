@@ -8,7 +8,7 @@ public class testTempFlights {
 
     @Test
     public void testSearch(){
-        IHsqldbFlights handler = new FlightsStub();
+        IHsqldbFlights handler = new FlightHandler();
         Flight target;
 
         target = handler.search("YVR","YYZ");
