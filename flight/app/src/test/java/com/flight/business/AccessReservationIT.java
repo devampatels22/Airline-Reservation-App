@@ -8,6 +8,7 @@ import com.flight.persistence.IHsqldbReservations;
 import com.flight.persistence.hsqldb.ReservationPersistenceHSQLDB;
 import com.flight.utils.TestUtils;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -38,5 +39,10 @@ public class AccessReservationIT {
         assertEquals(1, table.size());
 
         System.out.println("Finished test AccessCourses");
+    }
+    @After
+    public void tearDown() {
+        // reset DB
+        this.tempDB.delete();
     }
 }
