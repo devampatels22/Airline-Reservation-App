@@ -23,4 +23,4 @@ One of the successes of the final iteration will be evaluated based on a few thi
 
 ## Project Velocity
 
-![](ProjectVelocity.png)
+![](Velocity2.jpg)
