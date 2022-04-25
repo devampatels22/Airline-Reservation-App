@@ -74,166 +74,6 @@ public class SystemTest extends TestCase {
 //    public IntentsTestRule<RecFlightsActivity> intentsTestRule =
 //            new IntentsTestRule<>(RecFlightsActivity.class);
 
-
-    @Test
-    public void tripTypeTest() {
-        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
-        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
-        onView(withId(R.id.select_trip_type_id)).perform(click());
-        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
-        // onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
-        // onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
-        //onView(withId(R.id.select_trip_type_id)).perform(click());
-        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
-        //onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
-    }
-
-    @Test
-    public void adultTravelOptionTest() {
-        onView(withId(R.id.adult_checkbox_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.adult_num_edit_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.adult_num_edit_id)).check(matches(isEnabled()));
-        onView(withId(R.id.adult_num_edit_id)).check(matches(withText("1")));
-        onView(withId(R.id.adult_checkbox_id)).perform(click());
-        onView(withId(R.id.adult_num_edit_id)).check(matches(isNotEnabled()));
-        onView(withId(R.id.adult_num_edit_id)).check(matches(withText("")));
-    }
-
-    @Test
-    public void childrenTravelOptionTest() {
-        onView(withId(R.id.child_checkbox_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.children_num_edit_id)).check(matches(isDisplayed()));
-        onView(withId(R.id.children_num_edit_id)).check(matches(isNotEnabled())); // wrong
-        onView(withId(R.id.children_num_edit_id)).check(matches(withText("")));
-        onView(withId(R.id.child_checkbox_id)).perform(click());
-        onView(withId(R.id.children_num_edit_id)).check(matches(isEnabled()));
-        onView(withId(R.id.children_num_edit_id)).check(matches(withText("1")));
-    }
-
-    @Test
-    public void setDateTest() {
-        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
-        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
-        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
-        onView(withId(R.id.select_dates_edit)).perform(click());
-        //
-    }
-
-    @Test
-    public void departureCityClickTest() throws InterruptedException {
-        onView(withId(R.id.departure_city_edit_id)).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        // Thread.sleep(1000);
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
-        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
-        // check the Toast
-        // Thread.sleep(1000);
-//        onView(withText("Departure city is: Calgary YYC"))
-//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-//        activityScenarioRule.getScenario().onActivity(activity -> {
-//            onView(withText("Departure city is: Calgary YYC"))
-//                .inRoot(withDecorView(not(activity.getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-//        });
-    }
-
-    @Test
-    public void departureCityInputTest() throws InterruptedException {
-        onView(withId(R.id.departure_city_edit_id)).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        // Thread.sleep(1000);
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
-        // onData(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
-        // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
-         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-         onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
-        // check the Toast
-        // Thread.sleep(1000);
-//        onView(withText("Departure city is: Calgary YYC"))
-//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void arrivalCityClickTest() throws InterruptedException {
-        onView(withId(R.id.arrival_city_edit_id)).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        // Thread.sleep(1000);
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
-         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
-        // check the Toast
-        // Thread.sleep(1000);
-//        onView(withText("Arrival city is: Calgary YYC"))
-//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void arrivalCityInputTest() throws InterruptedException {
-        onView(withId(R.id.arrival_city_edit_id)).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        // Thread.sleep(1000);
-        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
-        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
-        // onView(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
-        // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
-         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
-        // check the Toast
-        Thread.sleep(1000);
-//        onView(withText("Arrival city is: Calgary YYC"))
-//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
-//                .check(matches(isDisplayed()));
-    }
-
-    @Test
-    public void searchFlightsTest() {
-        onView(withId(R.id.search_flights_bttn_id)).check(matches(isDisplayed()));
-//        onView(withId(R.id.select_trip_type_id)).perform(click());
-//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        onView(withId(R.id.departure_city_edit_id)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
-        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        onView(withId(R.id.arrival_city_edit_id)).perform(click());
-        onData(allOf(is(instanceOf(String.class)), is("Edmonton YEG"))).perform(click());
-        onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Edmonton YEG")));
-//        onView(withId(R.id.select_dates_edit)).perform(click());
-//        onView(withId(R.id.select_dates_edit)).perform(click());
-        onView(withId(R.id.select_dates_edit)).perform(clearText(), typeText("May 30 - May 31"), closeSoftKeyboard());
-        onView(withId(R.id.search_flights_bttn_id)).perform(click());
-        onView(withId(R.id.flights_recycler_view_id)).check(matches(isDisplayed()));
-//        intended(allOf(
-//                hasExtra("departureCity","Calgary YYC"),
-//                hasExtra("arrivalCity", "Edmonton YEG"),
-//                hasExtra("travelDate", "May 30 - May 31"),
-//                hasExtra("adultNum", "1"),
-//                hasExtra("childrenNum", ""),
-//                toPackage("com.flight.presentation.RecFlightsActivity")
-//        ));
-    }
-
     @Test
     public void completedTest() {
         ViewInteraction button = onView(
@@ -882,6 +722,165 @@ public class SystemTest extends TestCase {
                                 1),
                         isDisplayed()));
         materialButton23.perform(click());
+    }
+
+    @Test
+    public void tripTypeTest() {
+        onView(withId(R.id.select_trip_type_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
+        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
+        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
+        onView(withId(R.id.select_trip_type_id)).perform(click());
+        // onView(withId(R.id.select_trip_type_id)).perform(matches(isChecked()));
+        // onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+        // onView(withId(R.id.select_dates_edit)).check(matches(withText("Select One way Trip Dates")));
+        //onView(withId(R.id.select_trip_type_id)).perform(click());
+        // onView(withId(R.id.select_trip_type_id)).perform(matches(isNotChecked()));
+        //onView(withId(R.id.select_dates_edit)).check(matches(withText("Select Round Trip Dates ")));
+    }
+
+    @Test
+    public void adultTravelOptionTest() {
+        onView(withId(R.id.adult_checkbox_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.adult_num_edit_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.adult_num_edit_id)).check(matches(isEnabled()));
+        onView(withId(R.id.adult_num_edit_id)).check(matches(withText("1")));
+        onView(withId(R.id.adult_checkbox_id)).perform(click());
+        onView(withId(R.id.adult_num_edit_id)).check(matches(isNotEnabled()));
+        onView(withId(R.id.adult_num_edit_id)).check(matches(withText("")));
+    }
+
+    @Test
+    public void childrenTravelOptionTest() {
+        onView(withId(R.id.child_checkbox_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.children_num_edit_id)).check(matches(isDisplayed()));
+        onView(withId(R.id.children_num_edit_id)).check(matches(isNotEnabled())); // wrong
+        onView(withId(R.id.children_num_edit_id)).check(matches(withText("")));
+        onView(withId(R.id.child_checkbox_id)).perform(click());
+        onView(withId(R.id.children_num_edit_id)).check(matches(isEnabled()));
+        onView(withId(R.id.children_num_edit_id)).check(matches(withText("1")));
+    }
+
+    @Test
+    public void setDateTest() {
+        onView(withId(R.id.select_dates_edit)).check(matches(isDisplayed()));
+        onView(withId(R.id.select_trip_type_id)).check(matches(withText("Round Trip")));
+        onView(withId(R.id.select_dates_edit)).check(matches(withText("Dates")));
+        onView(withId(R.id.select_dates_edit)).perform(click());
+        //
+    }
+
+    @Test
+    public void departureCityClickTest() throws InterruptedException {
+        onView(withId(R.id.departure_city_edit_id)).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        // Thread.sleep(1000);
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
+        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+        // check the Toast
+        // Thread.sleep(1000);
+//        onView(withText("Departure city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+//        activityScenarioRule.getScenario().onActivity(activity -> {
+//            onView(withText("Departure city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activity.getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+//        });
+    }
+
+    @Test
+    public void departureCityInputTest() throws InterruptedException {
+        onView(withId(R.id.departure_city_edit_id)).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        // Thread.sleep(1000);
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
+        // onData(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
+        // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+        // check the Toast
+        // Thread.sleep(1000);
+//        onView(withText("Departure city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void arrivalCityClickTest() throws InterruptedException {
+        onView(withId(R.id.arrival_city_edit_id)).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        // Thread.sleep(1000);
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
+        // check the Toast
+        // Thread.sleep(1000);
+//        onView(withText("Arrival city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void arrivalCityInputTest() throws InterruptedException {
+        onView(withId(R.id.arrival_city_edit_id)).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(not(isDisplayed())));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(not(isDisplayed())));
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        // Thread.sleep(1000);
+        // onData(allOf(withId(R.id.CityCode_listview))).check(matches(isDisplayed()));
+        // onData(allOf(withId(R.id.CityCode_searchview))).check(matches(isDisplayed()));
+        // onView(withId(R.id.CityCode_searchview)).perform(typeText("Calgary YYC"), closeSoftKeyboard());
+        // onView(withText("Calgary YYC")).check(matches(isDisplayed()));
+         onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+         onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Calgary YYC")));
+        // check the Toast
+        Thread.sleep(1000);
+//        onView(withText("Arrival city is: Calgary YYC"))
+//                .inRoot(withDecorView(not(activityScenarioRule.getScenario().onActivity(MainActivity.class).getWindow().getDecorView())))
+//                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void searchFlightsTest() {
+        onView(withId(R.id.search_flights_bttn_id)).check(matches(isDisplayed()));
+//        onView(withId(R.id.select_trip_type_id)).perform(click());
+//        onView(withId(R.id.select_trip_type_id)).check(matches(withText("One way")));
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Calgary YYC"))).perform(click());
+        onView(withId(R.id.departure_city_edit_id)).check(matches(withText("Calgary YYC")));
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).perform(click());
+        onData(allOf(is(instanceOf(String.class)), is("Edmonton YEG"))).perform(click());
+        onView(withId(R.id.arrival_city_edit_id)).check(matches(withText("Edmonton YEG")));
+//        onView(withId(R.id.select_dates_edit)).perform(click());
+//        onView(withId(R.id.select_dates_edit)).perform(click());
+        onView(withId(R.id.select_dates_edit)).perform(clearText(), typeText("May 30 - May 31"), closeSoftKeyboard());
+        onView(withId(R.id.search_flights_bttn_id)).perform(click());
+        onView(withId(R.id.flights_recycler_view_id)).check(matches(isDisplayed()));
+//        intended(allOf(
+//                hasExtra("departureCity","Calgary YYC"),
+//                hasExtra("arrivalCity", "Edmonton YEG"),
+//                hasExtra("travelDate", "May 30 - May 31"),
+//                hasExtra("adultNum", "1"),
+//                hasExtra("childrenNum", ""),
+//                toPackage("com.flight.presentation.RecFlightsActivity")
+//        ));
     }
 
     private static Matcher<View> childAtPosition(
