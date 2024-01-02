@@ -1,4 +1,4 @@
-# Canadian Airline Reservation System
+# Airline Reservation App
 The Airline Reservation System (ARS) is an android application (called Flight) that makes the flight booking process for airline travellers as easy and efficient as possible as it contains fare comparison capabilties, multiple airline schedules and other time and money saving features.
 
 
